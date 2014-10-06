@@ -9,6 +9,7 @@ module.exports.go = function go(M) {
       it ("should not wipeout Object prototype and be a mechanism", function() {
          var mech = M.propGet();
          expect(mech).to.have.property('toString');
+         expect(M.PropGetF).to.not.eql(undefined);
       });
       
       it ("should have correct properties", function() {
@@ -211,10 +212,12 @@ module.exports.go = function go(M) {
    
    // propSet ------------------------------------------------------------------
    
+   // TODO: A lot more test coverage is required for propSet
    describe ("set a property mechanism - propSet", function() {
       it ("should not wipeout Object prototype and be a mechanism", function() {
          var mech = M.propSet();
          expect(mech).to.have.property('toString');
+         expect(M.PropSetF).to.not.eql(undefined);         
       });
       
       it ("should have correct properties", function() {

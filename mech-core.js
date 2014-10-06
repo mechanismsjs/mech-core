@@ -8,7 +8,9 @@ function MechF(){};
 MechF.prototype.isMechanism = true;
 MechF.prototype.isNull = false;
 MechF.prototype.isPrimitive = false;
+MechF.prototype.create = false;
 module.exports.mech = function (){ return Object.create(MechF.prototype); };
+module.exports.MechF = MechF;
 
 // A number primitive that can not contain a primitive (speed)
 function NumF(){}; 
@@ -42,6 +44,7 @@ function num(d) {
    return f;
 };
 module.exports.num = num;
+module.exports.NumF = NumF;
 
 // A number primitive that can contain a primitive.
 function NumMF(){}; 
@@ -70,6 +73,7 @@ function numM(d) {
    return f;
 };
 module.exports.numM = numM;
+module.exports.NumMF = NumMF;
 
 function StrF(){};
 StrF.prototype = Object.create(MechF.prototype, {
@@ -100,6 +104,7 @@ module.exports.str = function(d){
    f.v = (arguments.length == 0) ? "" : d;
    return f;
 }
+module.exports.StrF = StrF;
 
 function StrMF(){};
 StrMF.prototype = Object.create(StrF.prototype, {
@@ -121,6 +126,7 @@ module.exports.strM = function(d){
    f.v = (arguments.length == 0) ? "" : d;
    return f;
 }
+module.exports.StrMF = StrMF;
 
 function DualArgF(){};
 DualArgF.prototype = Object.create(MechF.prototype, {
@@ -142,6 +148,7 @@ module.exports.dualArg = function(left,right) {
    f.r = (arguments.length <= 1) ? 0 : right;
    return f;
 };
+module.exports.DualArgF = DualArgF;
 
 function AddF(){};
 AddF.prototype = Object.create(DualArgF.prototype, {
@@ -154,7 +161,7 @@ module.exports.add = function(left,right) {
    f.r = (arguments.length <= 1) ? 0 : right;
    return f;
 };
-
+module.exports.AddF = AddF;
 function SubF(){};
 SubF.prototype = Object.create(DualArgF.prototype, {
    goNum: { get: function() { return this._l.goNum - this._r.goNum; } },
@@ -166,7 +173,7 @@ module.exports.sub = function(left,right) {
    f.r = (arguments.length <= 1) ? 0 : right;
    return f;
 };
-
+module.exports.SubF = SubF;
 function MulF(){};
 MulF.prototype = Object.create(DualArgF.prototype, {
    goNum: { get: function() { return this._l.goNum * this._r.goNum; } },
@@ -178,7 +185,7 @@ module.exports.mul = function(left,right) {
    f.r = (arguments.length <= 1) ? 0 : right;
    return f;
 };
-
+module.exports.MulF = MulF;
 function DivF(){};
 DivF.prototype = Object.create(DualArgF.prototype, {
    goNum: { get: function() { return this._l.goNum / this._r.goNum; } },
@@ -190,7 +197,7 @@ module.exports.div = function div(left,right) {
    f.r = (arguments.length <= 1) ? 0 : right;
    return f;
 };
-
+module.exports.DivF = DivF;
 function PropGetF(){};
 PropGetF.prototype = Object.create(MechF.prototype, {
    prop: { enumerable: false,
@@ -229,7 +236,7 @@ function propGet(prop, item, itemGo) {
 };
 module.exports.propGet = propGet;
 module.exports.p$ = propGet;
-
+module.exports.PropGetF = PropGetF;
 function PropSetF(){};
 PropSetF.prototype = Object.create(MechF.prototype, {
    prop: { enumerable: false,
@@ -264,52 +271,10 @@ function propSet(prop, dest, src, itemGo) {
       f.src = src;
       f.itemGo = itemGo;
    return f;
-}
-
+};
 module.exports.propSet = propSet;
 module.exports.p$s = propSet;
-
-
-
-function PropSetF(){};
-PropSetF.prototype = Object.create(MechF.prototype, {
-   prop: { enumerable: false,
-      get: function() {  return this._prop.isMechanism ? this._prop.goStr : this._prop; },
-      set: function(d) { this._prop = isUsable(d) ? d : ""; }
-   },
-   src: { enumerable: false,
-      get: function() { return null === this._src ? null : (this._src.isMechanism ? this._src.go : this._src); },
-      set: function(d) { this._src = isUsable(d) ? d: null; }
-   },
-   dest: { enumerable: false,
-      get: function() { return this._itemGo ? (null === this._dest ? null : this._dest.go) : this._dest; },
-      set: function(d) { this._dest = isUsable(d) ? d: null; }
-   },
-   itemGo: { enumerable: false,
-      get: function() { return this._itemGo; },
-      set: function(d) { this._itemGo = isUsable(d) ? d : true; }
-   },
-   go: { enumerable: false, get: function() {
-      var s = this.src;
-      var d = this.dest;
-      if (isUsable(d)) {
-         d[this.prop] = s;
-      }
-      return s;
-   }}
-});
-function propSet(prop, dest, src, itemGo) {
-   var f = Object.create(PropSetF.prototype);
-      f.prop = prop;
-      f.dest = dest;
-      f.src = src;
-      f.itemGo = itemGo;
-   return f;
-}
-
-module.exports.propSet = propSet;
-module.exports.p$s = propSet;
-
+module.exports.PropSetF = PropSetF;
 function WriteLnF(){};
 WriteLnF.prototype = Object.create(MechF.prototype, {
    text: { enumerable: false,
@@ -337,6 +302,6 @@ function writeLn(text) {
    return f;
 }
 module.exports.writeLn = writeLn;
-
+module.exports.WriteLnF = WriteLnF;
 
 

@@ -5,6 +5,7 @@ module.exports.go = function go(M) {
       it ("should not wipeout Object prototype and be a mechanism", function() {
          var mech = M.writeLn();
          expect(mech).to.have.property('toString');
+         expect(M.WriteLnF).to.not.eql(undefined);         
       });
       
       it ("should have correct properties", function() {

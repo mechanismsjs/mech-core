@@ -12,6 +12,7 @@ module.exports.go = function go(M) {
       it ("should not wipeout Object prototype and be a mechanism", function() {
         var mech = M.dualArg();
         expect(mech).to.have.property('toString');
+        expect(M.DualArgF).to.not.eql(undefined);
       });
       
       it ("should have correct properties", function() {
@@ -108,6 +109,7 @@ module.exports.go = function go(M) {
       it ("should not wipeout Object prototype and be a mechanism", function() {
         var mech = M.add();
         expect(mech).to.have.property('toString');
+        expect(M.AddF).to.not.eql(undefined);
       });
    
       it ("should have correct properties", function() {
@@ -292,6 +294,7 @@ module.exports.go = function go(M) {
        it ("should not wipeout Object prototype and be a mechanism", function() {
          var mech = M.sub();
          expect(mech).to.have.property('toString');
+         expect(M.SubF).to.not.eql(undefined);
        });
 
        it ("should have correct properties", function() {
@@ -476,6 +479,7 @@ module.exports.go = function go(M) {
         it ("should not wipeout Object prototype and be a mechanism", function() {
           var mech = M.mul();
           expect(mech).to.have.property('toString');
+          expect(M.MulF).to.not.eql(undefined);
         });
 
         it ("should have correct properties", function() {
@@ -660,6 +664,7 @@ module.exports.go = function go(M) {
       it ("should not wipeout Object prototype and be a mechanism", function() {
         var mech = M.div();
         expect(mech).to.have.property('toString');
+        expect(M.DivF).to.not.eql(undefined);
       });
       
       it ("should have correct properties", function() {
