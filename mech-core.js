@@ -1,5 +1,3 @@
-
-
 // http://www.erichosick.com
 // (c) 2014 Eric K. Hosick
 // mech-core may be freely distributed under the MIT license.
@@ -13,14 +11,14 @@
    // Save the previous value of the `_` variable.
    var previousMechanisms = root.m;
 
-   // Create a safe reference to the Underscore object for use below.
+   // Create a safe reference to the object for use below.
    var m = function(obj) {
      if (obj instanceof m) return obj;
      if (!(this instanceof m)) return new m(obj);
      this._wrapped = obj;
    };
 
-   // Export the Underscore object for **Node.js**, with
+   // Export the mechanism object for **Node.js**, with
    // backwards-compatibility for the old `require()` API. If we're in
    // the browser, add `m` as a global object.
    if (typeof exports !== 'undefined') {
@@ -32,7 +30,7 @@
      root.m = m;
    }
    // Current version.
-   m.VERSION = '0.1.5';
+   m.VERSION = '0.1.6';
    
    // null/undefined - not usable. NaN, #, Str, "", obj - are usable
    // works because null == undefined is true
