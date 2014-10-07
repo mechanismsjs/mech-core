@@ -32,7 +32,7 @@
      root.m = m;
    }
    // Current version.
-   m.VERSION = '0.1.3';
+   m.VERSION = '0.1.5';
    
    // null/undefined - not usable. NaN, #, Str, "", obj - are usable
    // works because null == undefined is true
