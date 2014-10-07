@@ -1,8 +1,12 @@
+
+
 // http://www.erichosick.com
 // (c) 2014 Eric K. Hosick
 // mech-core may be freely distributed under the MIT license.
 // follows underscore library
 (function() {
+   "use strict";
+
    // Establish the root object, `window` in the browser, or `exports` on the server.
    var root = this;
 
@@ -33,7 +37,7 @@
    // null/undefined - not usable. NaN, #, Str, "", obj - are usable
    // works because null == undefined is true
    // No-Coffeescript? Can use !(null == d)
-   isUsable = function(d){ return !((null === d) || (undefined === d)); };
+   var isUsable = function(d){ return !((null === d) || (undefined === d)); };
    m.isUsable = isUsable;
 
    function MechF(){};
@@ -77,7 +81,6 @@
    };
    m.num = num;
    m.NumF = NumF;
-
    
     // A number primitive that can contain a primitive.
     function NumMF(){}; 
