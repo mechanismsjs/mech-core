@@ -17,14 +17,14 @@ module.exports.go = function go(M) {
       
       it ("should have correct properties", function() {
         var mech = M.dualArg();
-        expect(mech).to.have.property('isMechanism');
-        expect(mech.isMechanism).to.be.true;
+        expect(mech).to.have.property('isMech');
+        expect(mech.isMech).to.be.true;
                 
         expect(mech).to.have.property('isNull');
         expect(mech.isNull).to.be.false;
                 
-        expect(mech).to.have.property('isPrimitive');
-        expect(mech.isPrimitive).to.be.false;
+        expect(mech).to.have.property('isPrim');
+        expect(mech.isPrim).to.be.false;
                 
         expect(mech).to.have.property('l');
         expect(mech).to.have.property('_l'); // imagined privacy
@@ -114,14 +114,14 @@ module.exports.go = function go(M) {
    
       it ("should have correct properties", function() {
         var mech = M.add();
-        expect(mech).to.have.property('isMechanism');
-        expect(mech.isMechanism).to.be.true;
+        expect(mech).to.have.property('isMech');
+        expect(mech.isMech).to.be.true;
              
         expect(mech).to.have.property('isNull');
         expect(mech.isNull).to.be.false;
              
-        expect(mech).to.have.property('isPrimitive');
-        expect(mech.isPrimitive).to.be.false;
+        expect(mech).to.have.property('isPrim');
+        expect(mech.isPrim).to.be.false;
              
         expect(mech).to.have.property('l');
         expect(mech).to.have.property('_l'); // imagined privacy
@@ -299,14 +299,14 @@ module.exports.go = function go(M) {
 
        it ("should have correct properties", function() {
          var mech = M.sub();
-         expect(mech).to.have.property('isMechanism');
-         expect(mech.isMechanism).to.be.true;
+         expect(mech).to.have.property('isMech');
+         expect(mech.isMech).to.be.true;
 
          expect(mech).to.have.property('isNull');
          expect(mech.isNull).to.be.false;
 
-         expect(mech).to.have.property('isPrimitive');
-         expect(mech.isPrimitive).to.be.false;
+         expect(mech).to.have.property('isPrim');
+         expect(mech.isPrim).to.be.false;
 
          expect(mech).to.have.property('l');
          expect(mech).to.have.property('_l'); // imagined privacy
@@ -484,14 +484,14 @@ module.exports.go = function go(M) {
 
         it ("should have correct properties", function() {
           var mech = M.mul();
-          expect(mech).to.have.property('isMechanism');
-          expect(mech.isMechanism).to.be.true;
+          expect(mech).to.have.property('isMech');
+          expect(mech.isMech).to.be.true;
 
           expect(mech).to.have.property('isNull');
           expect(mech.isNull).to.be.false;
 
-          expect(mech).to.have.property('isPrimitive');
-          expect(mech.isPrimitive).to.be.false;
+          expect(mech).to.have.property('isPrim');
+          expect(mech.isPrim).to.be.false;
 
           expect(mech).to.have.property('l');
           expect(mech).to.have.property('_l'); // imagined privacy
@@ -669,14 +669,14 @@ module.exports.go = function go(M) {
       
       it ("should have correct properties", function() {
         var mech = M.div();
-        expect(mech).to.have.property('isMechanism');
-        expect(mech.isMechanism).to.be.true;
+        expect(mech).to.have.property('isMech');
+        expect(mech.isMech).to.be.true;
       
         expect(mech).to.have.property('isNull');
         expect(mech.isNull).to.be.false;
       
-        expect(mech).to.have.property('isPrimitive');
-        expect(mech.isPrimitive).to.be.false;
+        expect(mech).to.have.property('isPrim');
+        expect(mech.isPrim).to.be.false;
       
         expect(mech).to.have.property('l');
         expect(mech).to.have.property('_l'); // imagined privacy

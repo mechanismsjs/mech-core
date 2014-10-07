@@ -1,12 +1,11 @@
-var M = require("../mech-core.js");
+var m = require("../mech-core.js");
+require("./shared/mech-core-misc.js").go(m);
+require("./shared/mech-core-utils.js").go(m);
+require("./shared/mech-core-math.js").go(m);
+require("./shared/mech-core-scope.js").go(m);
+require("./shared/mech-core-primitives.js").go(m);
 
-require("./shared/mech-core-utils.js").go(M);
-require("./shared/mech-core-math.js").go(M);
-require("./shared/mech-core-misc.js").go(M);
-require("./shared/mech-core-scope.js").go(M);
-require("./shared/mech-core-primitives.js").go(M);
-
-/*
+/* 
 
 Purpose of testing this way:
 

@@ -3,7 +3,7 @@ var expect = chai.expect;
 
 module.exports.go = function go(M) {
 
-   // isUsable FUNCTION -----------------------------------------------------------
+   // isUsable FUNCTION -------------------------------------------------------
    describe("the function isUsable should consider", function() {
       it ("null as not-usable", function() {
          expect(M.isUsable(null)).to.be.false;

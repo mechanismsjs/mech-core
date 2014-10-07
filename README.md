@@ -29,9 +29,8 @@ Install:
     
 Continuous test:
 
-    $ gulp watch-mocha
+    $ gulp
 
 Test:
 
     $ gulp mocha
-    

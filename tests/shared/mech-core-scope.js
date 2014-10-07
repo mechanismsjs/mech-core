@@ -14,14 +14,14 @@ module.exports.go = function go(M) {
       
       it ("should have correct properties", function() {
          var mech = M.propGet();
-         expect(mech).to.have.property('isMechanism');
-         expect(mech.isMechanism).to.be.true;
+         expect(mech).to.have.property('isMech');
+         expect(mech.isMech).to.be.true;
 
          expect(mech).to.have.property('isNull');
          expect(mech.isNull).to.be.false;
 
-         expect(mech).to.have.property('isPrimitive');
-         expect(mech.isPrimitive).to.be.false;
+         expect(mech).to.have.property('isPrim');
+         expect(mech.isPrim).to.be.false;
 
          expect(mech).to.have.property('prop');
          expect(mech).to.have.property('_prop'); // imagined privacy
@@ -47,10 +47,10 @@ module.exports.go = function go(M) {
          expect(mech.goBool).to.be.false;
       });
 
-      it ("propGet('isMechanism'): item is undefined", function() {
-         var mech = M.propGet("isMechanism");
+      it ("propGet('isMech'): item is undefined", function() {
+         var mech = M.propGet("isMech");
          expect(mech.itemGo).to.equal(true); // default
-         expect(mech.prop).to.equal("isMechanism");
+         expect(mech.prop).to.equal("isMech");
          expect(mech.item).to.equal(null);
          expect(mech.go).to.eql(null);
          expect(mech.goNum).to.eql(NaN);
@@ -60,10 +60,10 @@ module.exports.go = function go(M) {
          expect(mech.goBool).to.be.false;
       });
 
-      it ("propGet('isMechanism', null, false): item is null", function() {
-         var mech = M.propGet("isMechanism", null, false);
+      it ("propGet('isMech', null, false): item is null", function() {
+         var mech = M.propGet("isMech", null, false);
          expect(mech.itemGo).to.equal(false); // default
-         expect(mech.prop).to.equal("isMechanism");
+         expect(mech.prop).to.equal("isMech");
          expect(mech.item).to.equal(null);
          expect(mech.go).to.eql(null);
          expect(mech.goNum).to.eql(NaN);
@@ -73,12 +73,12 @@ module.exports.go = function go(M) {
          expect(mech.goBool).to.be.false;
       });
 
-      it ("propGet('isMechanism', theItem, false): return the actual item", function() {
+      it ("propGet('isMech', theItem, false): return the actual item", function() {
          var theItem = M.mech();
          
-         var mech = M.propGet("isMechanism", theItem, false);
+         var mech = M.propGet("isMech", theItem, false);
          expect(mech.itemGo).to.equal(false); // default
-         expect(mech.prop).to.equal("isMechanism");
+         expect(mech.prop).to.equal("isMech");
          expect(mech.item).to.equal(theItem);
          expect(mech.go).to.be.true;
          expect(mech.goNum).to.equal(1);
@@ -88,12 +88,12 @@ module.exports.go = function go(M) {
          expect(mech.goBool).to.be.true;
       });
 
-      it ("p$('isMechanism', item, false): returns the actual item", function() {
+      it ("p$('isMech', item, false): returns the actual item", function() {
          var theItem = M.mech();
          
-         var mech = M.p$("isMechanism", theItem, false);
+         var mech = M.p$("isMech", theItem, false);
          expect(mech.itemGo).to.equal(false); // default
-         expect(mech.prop).to.equal("isMechanism");
+         expect(mech.prop).to.equal("isMech");
          expect(mech.item).to.equal(theItem);
          expect(mech.go).to.be.true;
          expect(mech.goNum).to.equal(1);
@@ -222,14 +222,14 @@ module.exports.go = function go(M) {
       
       it ("should have correct properties", function() {
          var mech = M.propSet();
-         expect(mech).to.have.property('isMechanism');
-         expect(mech.isMechanism).to.be.true;
+         expect(mech).to.have.property('isMech');
+         expect(mech.isMech).to.be.true;
       
          expect(mech).to.have.property('isNull');
          expect(mech.isNull).to.be.false;
       
-         expect(mech).to.have.property('isPrimitive');
-         expect(mech.isPrimitive).to.be.false;
+         expect(mech).to.have.property('isPrim');
+         expect(mech.isPrim).to.be.false;
       
          expect(mech).to.have.property('prop');
          expect(mech).to.have.property('_prop'); // imagined privacy
