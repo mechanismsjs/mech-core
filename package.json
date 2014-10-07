@@ -1,6 +1,6 @@
 {
   "name": "mech-core",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Library of core mechanisms.",
   "main": "mech-core.js",
   "scripts": {
