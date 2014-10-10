@@ -1,15 +1,13 @@
-var chai = require("chai");
-var expect = chai.expect;
-module.exports.go = function go(M) {
-   describe ("get a property mechanism - propGet", function() {
+module.exports.go = function go(m, expect) {
+   describe ("write a line of text to the console - writeLn", function() {
       it ("should not wipeout Object prototype and be a mechanism", function() {
-         var mech = M.writeLn();
+         var mech = m.writeLn();
          expect(mech).to.have.property('toString');
-         expect(M.WriteLnF).to.not.eql(undefined);         
+         expect(m.WriteLnF).to.not.eql(undefined);         
       });
       
       it ("should have correct properties", function() {
-         var mech = M.writeLn();
+         var mech = m.writeLn();
          expect(mech).to.have.property('isMech');
          expect(mech.isMech).to.be.true;
       
@@ -24,21 +22,21 @@ module.exports.go = function go(M) {
       });
       
       it ("should write the primitive text 'hello' to the console", function() {
-         var mech = M.writeLn("hello");
+         var mech = m.writeLn("hello");
          expect(mech.go).to.equal("hello");
          expect(mech.goNum).to.eql(NaN);
          expect(mech.goStr).to.equal("hello");
       });
 
       it ("should write the mechanism text 'hello'", function() {
-         var mech = M.writeLn(M.str("45"));
+         var mech = m.writeLn(m.str("45"));
          expect(mech.go).to.equal("45");
          expect(mech.goStr).to.equal("45");
          expect(mech.goNum).to.equal(45);
       });
 
       it ("should write the mechanism text '(4 + 2)'", function() {
-         var mech = M.writeLn(M.add(4,2));
+         var mech = m.writeLn(m.add(4,2));
          expect(mech.go).to.equal("(4 + 2)");
          expect(mech.goStr).to.equal("(4 + 2)");
          expect(mech.goNum).to.equal(6);

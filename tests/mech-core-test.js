@@ -1,11 +1,10 @@
-var m = require("../mech-core.js");
-require("./shared/mech-core-misc.js").go(m);
-require("./shared/mech-core-utils.js").go(m);
-require("./shared/mech-core-math.js").go(m);
-require("./shared/mech-core-scope.js").go(m);
-require("./shared/mech-core-primitives.js").go(m);
+var m = require("../dist/mech-core.js");
+var expect = require("chai").expect;
+require("./shared/runAll.js").go(m, expect);
 
-/* 
+
+
+/*
 
 Purpose of testing this way:
 
@@ -34,18 +33,5 @@ index.webify.min.js
 
 and so on
 
-Before, we had something like this:
-
-var testAgainst = [
-   require("../src/mech-core.min.js"),
-   require("../src/mech-core.js")
-];
-
-for (i = 0; i < testAgainst.length; i++ ) {
-   var M = testAgainst[i];
-
-   // tests here
-
-};
 
 */

@@ -1,5 +1,4 @@
-mech-core
-=========
+# mech-core
 
 Mechanisms are plugins for open source.
 
