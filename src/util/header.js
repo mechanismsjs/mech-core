@@ -20,5 +20,5 @@ m["version"] = '{{VERSION}}';
 if(typeof module !== 'undefined' && module.exports) {
   module.exports = m;
 } else {
-  this.sightglass = sightglass
+  this.m = m
 }

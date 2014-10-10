@@ -1,5 +1,5 @@
 // mech-core.js
-// version: 0.1.7
+// version: 0.1.8
 // author: Eric Hosick <erichosick@gmail.com> (http://www.erichosick.com/)
 // license: MIT
 (function() {
@@ -18,13 +18,13 @@ var m = m || {};
 
 // Current version updated by
 // gulpfile.js build process
-m["version"] = '0.1.7';
+m["version"] = '0.1.8';
 
 // Export module for Node and the browser.
 if(typeof module !== 'undefined' && module.exports) {
   module.exports = m;
 } else {
-  this.sightglass = sightglass
+  this.m = m
 }
 
 // Not usable - null/undefined
