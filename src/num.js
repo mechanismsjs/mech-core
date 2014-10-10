@@ -5,7 +5,7 @@ function num(d) {
    f.v = (arguments.length == 0) ? 0 : d; // for same behavior as Number() == 0 and Number(undefined) == NaN
    return f;
 };
-NumF.prototype = Object.create(MechF.prototype, {
+NumF.prototype = Object.create(Object.prototype, {
    v: { enumerable: false,
       get: function() { return this.goNum; },
       set: function(d) {
@@ -28,6 +28,8 @@ NumF.prototype = Object.create(MechF.prototype, {
    goArr: { enumerable: false, get: function() { return [this.goNum]; } },
    goBool: { enumerable: false, get: function() { return (this.goNum > 0); } }
 });
+NumF.prototype.isMech = true;
+NumF.prototype.isNull = false;
 NumF.prototype.isPrim = true;
 m.num = num;
 m.NumF = NumF;

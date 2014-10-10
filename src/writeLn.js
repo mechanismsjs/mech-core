@@ -4,7 +4,7 @@ function writeLn(text) {
    f.text = text;
    return f;
 }
-WriteLnF.prototype = Object.create(MechF.prototype, {
+WriteLnF.prototype = Object.create(Object.prototype, {
    text: { enumerable: false,
       get: function() {  return this._t.isMech ? this._t.goStr : this._t; },
       set: function(d) { this._t = isUsable(d) ? d : ""; }
@@ -24,5 +24,8 @@ WriteLnF.prototype = Object.create(MechF.prototype, {
       return i;
    }}
 });
+WriteLnF.prototype.isMech = true;
+WriteLnF.prototype.isNull = false;
+WriteLnF.prototype.isPrim = false;
 m.writeLn = writeLn;
 m.WriteLnF = WriteLnF;

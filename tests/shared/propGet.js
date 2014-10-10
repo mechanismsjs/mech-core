@@ -69,7 +69,7 @@ module.exports.go = function go(m, expect) {
       });
 
       it ("propGet('isMech', theItem, false): return the actual item", function() {
-         var theItem = m.mech();
+         var theItem = m.num();
       
          var mech = m.propGet("isMech", theItem, false);
          expect(mech.itemGo).to.equal(false); // default
@@ -84,7 +84,7 @@ module.exports.go = function go(m, expect) {
       });
 
       it ("p$('isMech', item, false): returns the actual item", function() {
-         var theItem = m.mech();
+         var theItem = m.num();
       
          var mech = m.p$("isMech", theItem, false);
          expect(mech.itemGo).to.equal(false); // default

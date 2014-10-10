@@ -1,5 +1,5 @@
 // mech-core.js
-// version: 0.1.8
+// version: 0.1.9
 // author: Eric Hosick <erichosick@gmail.com> (http://www.erichosick.com/)
 // license: MIT
 (function() {
@@ -18,7 +18,7 @@ var m = m || {};
 
 // Current version updated by
 // gulpfile.js build process
-m["version"] = '0.1.8';
+m["version"] = '0.1.9';
 
 // Export module for Node and the browser.
 if(typeof module !== 'undefined' && module.exports) {
@@ -33,13 +33,6 @@ if(typeof module !== 'undefined' && module.exports) {
 var isUsable = function(d){ return !((null === d) || (undefined === d)); };
 m.isUsable = isUsable;
 
-function MechF(){};
-MechF.prototype.isMech = true;
-MechF.prototype.isNull = false;
-MechF.prototype.isPrim = false;
-m.mech = function (){ return Object.create(MechF.prototype); };
-m.MechF = MechF;
-
 // A number primitive that can not contain a primitive
 function NumF(){};
 function num(d) {
@@ -47,7 +40,7 @@ function num(d) {
    f.v = (arguments.length == 0) ? 0 : d; // for same behavior as Number() == 0 and Number(undefined) == NaN
    return f;
 };
-NumF.prototype = Object.create(MechF.prototype, {
+NumF.prototype = Object.create(Object.prototype, {
    v: { enumerable: false,
       get: function() { return this.goNum; },
       set: function(d) {
@@ -70,6 +63,8 @@ NumF.prototype = Object.create(MechF.prototype, {
    goArr: { enumerable: false, get: function() { return [this.goNum]; } },
    goBool: { enumerable: false, get: function() { return (this.goNum > 0); } }
 });
+NumF.prototype.isMech = true;
+NumF.prototype.isNull = false;
 NumF.prototype.isPrim = true;
 m.num = num;
 m.NumF = NumF;
@@ -107,7 +102,7 @@ function str(d){
    f.v = (arguments.length == 0) ? "" : d;
    return f;
 }
-StrF.prototype = Object.create(MechF.prototype, {
+StrF.prototype = Object.create(Object.prototype, {
    v: { enumerable: false,
       get: function() { return this.goStr; },
       set: function(d) { this._v = String(d); }},
@@ -129,6 +124,8 @@ StrF.prototype = Object.create(MechF.prototype, {
    goArr: { enumerable: false, get: function() { return [this.goStr]; } },
    goBool: { enumerable: false, get: function() { return (this.goNum > 0); } }
 });
+StrF.prototype.isMech = true;
+StrF.prototype.isNull = false;
 StrF.prototype.isPrim = true;
 m.str = str;
 m.StrF = StrF;
@@ -162,7 +159,7 @@ function propGet(prop, item, itemGo) {
    f.itemGo = itemGo;
    return f;
 };
-PropGetF.prototype = Object.create(MechF.prototype, {
+PropGetF.prototype = Object.create(Object.prototype, {
    prop: { enumerable: false,
       get: function() {  return this._prop.isMech ? this._prop.goStr : this._prop; },
       set: function(d) { this._prop = isUsable(d) ? d : ""; }
@@ -190,6 +187,9 @@ PropGetF.prototype = Object.create(MechF.prototype, {
    goArr: { enumerable: false, get: function() { return [this.go]; } },
    goBool: { enumerable: false, get: function() { return Boolean(this.go); }}
 });
+PropGetF.prototype.isMech = true;
+PropGetF.prototype.isNull = false;
+PropGetF.prototype.isPrim = false;
 m.propGet = propGet;
 m.p$ = propGet;
 m.PropGetF = PropGetF;
@@ -202,7 +202,7 @@ function propSet(prop, dest, src, itemGo) {
       f.itemGo = itemGo;
    return f;
 };
-PropSetF.prototype = Object.create(MechF.prototype, {
+PropSetF.prototype = Object.create(Object.prototype, {
    prop: { enumerable: false,
       get: function() {  return this._prop.isMech ? this._prop.goStr : this._prop; },
       set: function(d) { this._prop = isUsable(d) ? d : ""; }
@@ -228,6 +228,9 @@ PropSetF.prototype = Object.create(MechF.prototype, {
       return s;
    }}
 });
+PropSetF.prototype.isMech = true;
+PropSetF.prototype.isNull = false;
+PropSetF.prototype.isPrim = false;
 m.propSet = propSet;
 m.p$s = propSet;
 m.PropSetF = PropSetF;
@@ -237,7 +240,7 @@ function writeLn(text) {
    f.text = text;
    return f;
 }
-WriteLnF.prototype = Object.create(MechF.prototype, {
+WriteLnF.prototype = Object.create(Object.prototype, {
    text: { enumerable: false,
       get: function() {  return this._t.isMech ? this._t.goStr : this._t; },
       set: function(d) { this._t = isUsable(d) ? d : ""; }
@@ -257,6 +260,9 @@ WriteLnF.prototype = Object.create(MechF.prototype, {
       return i;
    }}
 });
+WriteLnF.prototype.isMech = true;
+WriteLnF.prototype.isNull = false;
+WriteLnF.prototype.isPrim = false;
 m.writeLn = writeLn;
 m.WriteLnF = WriteLnF;
 function DualArgF(){};
@@ -266,7 +272,8 @@ function dualArg(left,right) {
    f.r = (arguments.length <= 1) ? 0 : right;
    return f;
 };
-DualArgF.prototype = Object.create(MechF.prototype, {
+DualArgF.prototype = Object.create(Object.prototype, {
+   isMech2: { enumerable: false, get: function() { return true; }},
    l: { enumerable: false,
       get: function() { return this._l; },
       set: function(d) { this._l = isUsable(d) ? (d.isMech ? d : num(d)) : num(NaN); }
@@ -279,6 +286,10 @@ DualArgF.prototype = Object.create(MechF.prototype, {
    goArr: { enumerable: false, get: function() { return [this.goNum]; } },
    goBool: { enumerable: false, get: function() { return (this.goNum > 0); } }
 });
+DualArgF.prototype.isMech = true;
+DualArgF.prototype.isNull = false;
+DualArgF.prototype.isPrim = false;
+
 m.dualArg = dualArg;
 m.DualArgF = DualArgF;
 function AddF(){};

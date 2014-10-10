@@ -1,6 +1,6 @@
 module.exports.go = function go(m, expect) {
    
-   require("./mech.js").go(m, expect);
+   // require("./mech.js").go(m, expect);
    require("./num.js").go(m, expect);
    require("./numM.js").go(m, expect);
    require("./str.js").go(m, expect);

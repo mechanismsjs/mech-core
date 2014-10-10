@@ -7,7 +7,7 @@ function propSet(prop, dest, src, itemGo) {
       f.itemGo = itemGo;
    return f;
 };
-PropSetF.prototype = Object.create(MechF.prototype, {
+PropSetF.prototype = Object.create(Object.prototype, {
    prop: { enumerable: false,
       get: function() {  return this._prop.isMech ? this._prop.goStr : this._prop; },
       set: function(d) { this._prop = isUsable(d) ? d : ""; }
@@ -33,6 +33,9 @@ PropSetF.prototype = Object.create(MechF.prototype, {
       return s;
    }}
 });
+PropSetF.prototype.isMech = true;
+PropSetF.prototype.isNull = false;
+PropSetF.prototype.isPrim = false;
 m.propSet = propSet;
 m.p$s = propSet;
 m.PropSetF = PropSetF;
