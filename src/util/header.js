@@ -2,15 +2,15 @@
 "use strict";
 
 // Establish the root object:
-//   'window' in the browser
-//   'exports' on the server
+//  'window' in the browser
+//  'exports' on the server
 var root = this;
 
 // Save the previous m
-var previousMechanisms = root.m;
+var previous = root.m;
 
-// New module or use existing
-var m = m || {};
+// New module or merge with previous
+var m = previous || {};
 
 // Current version updated by
 // gulpfile.js build process

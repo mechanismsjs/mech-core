@@ -22,6 +22,5 @@ DualArgF.prototype = Object.create(Object.prototype, {
 DualArgF.prototype.isMech = true;
 DualArgF.prototype.isNull = false;
 DualArgF.prototype.isPrim = false;
-
 m.dualArg = dualArg;
 m.DualArgF = DualArgF;
