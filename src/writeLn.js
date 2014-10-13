@@ -7,7 +7,7 @@ function writeLn(text) {
 WriteLnF.prototype = Object.create(Object.prototype, {
    text: { enumerable: false,
       get: function() {  return this._t.isMech ? this._t.goStr : this._t; },
-      set: function(d) { this._t = isUsable(d) ? d : ""; }
+      set: function(d) { this._t = ((null === d) || (undefined === d)) ? "" : d; }
    },
    go: { enumerable: false, get: function() {
       return this.goStr;

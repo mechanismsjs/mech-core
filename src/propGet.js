@@ -9,19 +9,19 @@ function propGet(prop, item, itemGo) {
 PropGetF.prototype = Object.create(Object.prototype, {
    prop: { enumerable: false,
       get: function() {  return this._prop.isMech ? this._prop.goStr : this._prop; },
-      set: function(d) { this._prop = isUsable(d) ? d : ""; }
+      set: function(d) { this._prop = ((null === d) || (undefined === d)) ? "" : d; }
    },
    item: { enumerable: false,
-      get: function() { return isUsable(this._item) ? (this._itemGo ? this._item.go : this._item) : null; },
-      set: function(d) { this._item = isUsable(d) ? d : null; }
+      get: function() { return ((null === this._item) || (undefined === this._item)) ? null : (this._itemGo ? this._item.go : this._item); },
+      set: function(d) { this._item = ((null === d) || (undefined === d)) ? null : d; }
    },
    itemGo: { enumerable: false,
       get: function() { return this._itemGo; },
-      set: function(d) { this._itemGo = isUsable(d) ? d : true; }
+      set: function(d) { this._itemGo = ((null === d) || (undefined === d)) ? true : d; }
    },
    go: { enumerable: false, get: function() {
       var i = this.item;
-      return isUsable(i) ? i[this.prop] : null;
+      return ((null === i) || (undefined === i)) ? null : i[this.prop];
    }},
    goNum: { enumerable: false, get: function() {
       var i = this.go;

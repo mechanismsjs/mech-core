@@ -9,15 +9,15 @@ NumMF.prototype = Object.create(NumF.prototype, {
    v: { enumerable: false,
       get: function() { return this.goNum; },
       set: function(d) {
-         if (isUsable(d)) {
+         if ((null === d) || (undefined === d)) {
+            this._v = (undefined === d) ? NaN : 0;
+         } else {
             this._v = d.isMech ? d : Number(d);
             if ( isNaN(this._v)) {
                if ("NaN" != d.toString()) { // retain original bad value but NOT when NaN
                   this._vb = d;
                }
             }
-         } else {
-            this._v = (undefined === d) ? NaN : 0;
          }
       }
    },

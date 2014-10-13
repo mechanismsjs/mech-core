@@ -1,15 +1,17 @@
 [mech-library-link]: https://github.com/mechanismsjs/mech-library "Clone to easily create new mechanism libraries"
 [mech-web-link]: https://github.com/mechanismsjs/mech-web "Web centric DOM mechanisms"
 [mech-core-link]: https://github.com/mechanismsjs/mech-core "Core mechanisms"
+[mech-math-link]: https://github.com/mechanismsjs/mech-math "Math mechanisms"
+[mech-guid-link]: https://github.com/mechanismsjs/mech-guid "Mechanisms for guids"
 [mech-home-link]: https://github.com/mechanisms/mech "Home repository for mechanisms"
 # mech-core
 
-Mechanisms are plugins for open source.
-
 See [Mechanisms Home][mech-home-link] for more information.
 
-* [mech-core][mech-core-link] - This project. Core mechanisms.
+* [mech-core][mech-core-link] - Core mechanisms. This project.
+* [mech-math][mech-math-link] - Math mechanisms.
 * [mech-web][mech-web-link] - Web centric DOM mechanisms.
+* [mech-guid][mech-guid-link] - Guid mechanisms.
 * [mech-library][mech-library-link] - Clone and start making your own mechanism libraries.
 
 ## Using In Your Projects

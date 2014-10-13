@@ -1,5 +1,5 @@
 // mech-core.js
-// version: 0.1.9
+// version: 0.1.11
 // author: Eric Hosick <erichosick@gmail.com> (http://www.erichosick.com/)
 // license: MIT
 (function() {
@@ -18,7 +18,7 @@ var m = previous || {};
 
 // Current version updated by
 // gulpfile.js build process
-m["version"] = '0.1.9';
+m["version"] = '0.1.11';
 
 // Export module for Node and the browser.
 if(typeof module !== 'undefined' && module.exports) {
@@ -26,12 +26,6 @@ if(typeof module !== 'undefined' && module.exports) {
 } else {
   this.m = m
 }
-
-// Not usable - null/undefined
-// Usable - NaN, #, Str, "", obj
-// Not using Coffeescript? We can use !(null == d)
-var isUsable = function(d){ return !((null === d) || (undefined === d)); };
-m.isUsable = isUsable;
 
 // A number primitive that can not contain a primitive
 function NumF(){};
@@ -44,15 +38,15 @@ NumF.prototype = Object.create(Object.prototype, {
    v: { enumerable: false,
       get: function() { return this.goNum; },
       set: function(d) {
-         if (isUsable(d)) {
+         if ((null === d) || (undefined === d)) {
+            this._v = (undefined === d) ? NaN : 0;
+         } else {
             this._v = Number(d);
             if ( isNaN(this._v)) {
                if ("NaN" != d.toString()) { // retain original bad value but NOT when NaN
                   this._vb = d;
                }
             }
-         } else {
-            this._v = (undefined === d) ? NaN : 0;
          }
       }
    },
@@ -79,15 +73,15 @@ NumMF.prototype = Object.create(NumF.prototype, {
    v: { enumerable: false,
       get: function() { return this.goNum; },
       set: function(d) {
-         if (isUsable(d)) {
+         if ((null === d) || (undefined === d)) {
+            this._v = (undefined === d) ? NaN : 0;
+         } else {
             this._v = d.isMech ? d : Number(d);
             if ( isNaN(this._v)) {
                if ("NaN" != d.toString()) { // retain original bad value but NOT when NaN
                   this._vb = d;
                }
             }
-         } else {
-            this._v = (undefined === d) ? NaN : 0;
          }
       }
    },
@@ -139,7 +133,7 @@ StrMF.prototype = Object.create(StrF.prototype, {
    v: { enumerable: false,
       get: function() { return this.goStr; },
       set: function(d) {
-         if ((isUsable(d)) && (d.isMech)){
+         if ((!((null === d) || (undefined === d))) && (d.isMech)){
             this._v = d;
          } else {
             this._v = String(d);
@@ -162,19 +156,19 @@ function propGet(prop, item, itemGo) {
 PropGetF.prototype = Object.create(Object.prototype, {
    prop: { enumerable: false,
       get: function() {  return this._prop.isMech ? this._prop.goStr : this._prop; },
-      set: function(d) { this._prop = isUsable(d) ? d : ""; }
+      set: function(d) { this._prop = ((null === d) || (undefined === d)) ? "" : d; }
    },
    item: { enumerable: false,
-      get: function() { return isUsable(this._item) ? (this._itemGo ? this._item.go : this._item) : null; },
-      set: function(d) { this._item = isUsable(d) ? d : null; }
+      get: function() { return ((null === this._item) || (undefined === this._item)) ? null : (this._itemGo ? this._item.go : this._item); },
+      set: function(d) { this._item = ((null === d) || (undefined === d)) ? null : d; }
    },
    itemGo: { enumerable: false,
       get: function() { return this._itemGo; },
-      set: function(d) { this._itemGo = isUsable(d) ? d : true; }
+      set: function(d) { this._itemGo = ((null === d) || (undefined === d)) ? true : d; }
    },
    go: { enumerable: false, get: function() {
       var i = this.item;
-      return isUsable(i) ? i[this.prop] : null;
+      return ((null === i) || (undefined === i)) ? null : i[this.prop];
    }},
    goNum: { enumerable: false, get: function() {
       var i = this.go;
@@ -205,24 +199,24 @@ function propSet(prop, dest, src, itemGo) {
 PropSetF.prototype = Object.create(Object.prototype, {
    prop: { enumerable: false,
       get: function() {  return this._prop.isMech ? this._prop.goStr : this._prop; },
-      set: function(d) { this._prop = isUsable(d) ? d : ""; }
+      set: function(d) { this._prop = ((null === d) || (undefined === d)) ? "" : d; }
    },
    src: { enumerable: false,
       get: function() { return null === this._src ? null : (this._src.isMech ? this._src.go : this._src); },
-      set: function(d) { this._src = isUsable(d) ? d: null; }
+      set: function(d) { this._src = ((null === d) || (undefined === d)) ? null : d; }
    },
    dest: { enumerable: false,
       get: function() { return this._itemGo ? (null === this._dest ? null : this._dest.go) : this._dest; },
-      set: function(d) { this._dest = isUsable(d) ? d: null; }
+      set: function(d) { this._dest = ((null === d) || (undefined === d)) ? null : d; }
    },
    itemGo: { enumerable: false,
       get: function() { return this._itemGo; },
-      set: function(d) { this._itemGo = isUsable(d) ? d : true; }
+      set: function(d) { this._itemGo = ((null === d) || (undefined === d)) ? true: d; }
    },
    go: { enumerable: false, get: function() {
       var s = this.src;
       var d = this.dest;
-      if (isUsable(d)) {
+      if (!((null === d) || (undefined === d))) {
          d[this.prop] = s;
       }
       return s;
@@ -243,7 +237,7 @@ function writeLn(text) {
 WriteLnF.prototype = Object.create(Object.prototype, {
    text: { enumerable: false,
       get: function() {  return this._t.isMech ? this._t.goStr : this._t; },
-      set: function(d) { this._t = isUsable(d) ? d : ""; }
+      set: function(d) { this._t = ((null === d) || (undefined === d)) ? "" : d; }
    },
    go: { enumerable: false, get: function() {
       return this.goStr;
@@ -265,83 +259,5 @@ WriteLnF.prototype.isNull = false;
 WriteLnF.prototype.isPrim = false;
 m.writeLn = writeLn;
 m.WriteLnF = WriteLnF;
-function DualArgF(){};
-function dualArg(left,right) {
-   var f = Object.create(DualArgF.prototype);
-   f.l = (arguments.length == 0) ? 0 : left;
-   f.r = (arguments.length <= 1) ? 0 : right;
-   return f;
-};
-DualArgF.prototype = Object.create(Object.prototype, {
-   isMech2: { enumerable: false, get: function() { return true; }},
-   l: { enumerable: false,
-      get: function() { return this._l; },
-      set: function(d) { this._l = isUsable(d) ? (d.isMech ? d : num(d)) : num(NaN); }
-   },
-   r: { enumerable: false,
-      get: function() { return this._r; },
-      set: function(d) { this._r = isUsable(d) ? (d.isMech ? d : num(d)) : num(NaN); }
-   },
-   go: { enumerable: false, get: function() { return this.goNum; } },
-   goArr: { enumerable: false, get: function() { return [this.goNum]; } },
-   goBool: { enumerable: false, get: function() { return (this.goNum > 0); } }
-});
-DualArgF.prototype.isMech = true;
-DualArgF.prototype.isNull = false;
-DualArgF.prototype.isPrim = false;
-m.dualArg = dualArg;
-m.DualArgF = DualArgF;
-function AddF(){};
-function add(left,right) {
-   var f = Object.create(AddF.prototype);
-   f.l = (arguments.length == 0) ? 0 : left;
-   f.r = (arguments.length <= 1) ? 0 : right;
-   return f;
-};
-AddF.prototype = Object.create(DualArgF.prototype, {
-   goNum: { get: function() { return this._l.goNum + this._r.goNum; } },
-   goStr: { get: function() { return "(" + this._l.goStr + " + " + this._r.goStr + ")"; } }
-});
-m.add = add;
-m.AddF = AddF;
-function SubF(){};
-function sub(left,right) {
-   var f = Object.create(SubF.prototype);
-   f.l = (arguments.length == 0) ? 0 : left;
-   f.r = (arguments.length <= 1) ? 0 : right;
-   return f;
-};
-SubF.prototype = Object.create(DualArgF.prototype, {
-   goNum: { get: function() { return this._l.goNum - this._r.goNum; } },
-   goStr: { get: function() { return "(" + this._l.goStr + " - " + this._r.goStr + ")"; } }
-});
-m.sub = sub;
-m.SubF = SubF;
-function MulF(){};
-function mul(left,right) {
-   var f = Object.create(MulF.prototype);
-   f.l = (arguments.length == 0) ? 0 : left;
-   f.r = (arguments.length <= 1) ? 0 : right;
-   return f;
-};
-MulF.prototype = Object.create(DualArgF.prototype, {
-   goNum: { get: function() { return this._l.goNum * this._r.goNum; } },
-   goStr: { get: function() { return "(" + this._l.goStr + " * " + this._r.goStr + ")"; } }
-});
-m.mul = mul;
-m.MulF = MulF;
-function DivF(){};
-function div(left,right) {
-   var f = Object.create(DivF.prototype);
-   f.l = (arguments.length == 0) ? 0 : left;
-   f.r = (arguments.length <= 1) ? 0 : right;
-   return f;
-};
-DivF.prototype = Object.create(DualArgF.prototype, {
-   goNum: { get: function() { return this._l.goNum / this._r.goNum; } },
-   goStr: { get: function() { return "(" + this._l.goStr + " / " + this._r.goStr + ")"; } }
-});
-m.div = div;
-m.DivF = DivF;
 
 }.call(this));
