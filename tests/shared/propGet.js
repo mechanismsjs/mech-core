@@ -2,7 +2,7 @@ describe ("get a property mechanism - propGet", function() {
    it ("should not wipeout Object prototype and be a mechanism", function() {
       var mech = m.propGet();
       expect(mech).to.have.property('toString');
-      expect(m._.PropGetF).to.not.eql(undefined);
+      expect(m._.PropGetF).to.not.be.undefined;
    });
 
    it ("should have correct properties", function() {

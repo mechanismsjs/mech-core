@@ -2,7 +2,7 @@ describe ("write a line of text to the console - writeLn", function() {
    it ("should not wipeout Object prototype and be a mechanism", function() {
       var mech = m.writeLn();
       expect(mech).to.have.property('toString');
-      expect(m._.WriteLnF).to.not.eql(undefined);         
+      expect(m._.WriteLnF).to.not.be.undefined;
    });
    
    it ("should have correct properties", function() {
