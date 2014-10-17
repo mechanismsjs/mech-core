@@ -1,20 +1,11 @@
 (function() {
 "use strict";
 
-// Establish the root object:
-//  'window' in the browser
-//  'exports' on the server
-var root = this;
-
-// Save the previous m
+var root = this; // Root becomes window (browser) or exports (server)
 var previous = root.m;
-
-// New module or merge with previous
-var m = previous || {};
-
-// Current version updated by
-// gulpfile.js build process
-m["version"] = '{{VERSION}}';
+var m = previous || { _ : {} }; // new module or merge with previous
+var m_ = m._ || {}; // new sub-module or merge with pervious
+m["version-core"] = '{{VERSION}}'; // New library OR to use existing library (m for example), please fork and add to that project.
 
 // Export module for Node and the browser.
 if(typeof module !== 'undefined' && module.exports) {

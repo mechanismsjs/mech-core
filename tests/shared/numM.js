@@ -2,7 +2,7 @@ describe ("number mechanism - numM", function() {
    it ("should not wipeout Object prototype and be a mechanism", function() {
      var mech = m.numM();
      expect(mech).to.have.property('toString');
-     expect(m.NumMF).to.not.eql(undefined);
+     expect(m._.NumMF).to.not.eql(undefined);
    });
 
    it ("should have correct properties", function() {

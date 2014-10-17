@@ -3,7 +3,7 @@ describe ("set a property mechanism - propSet", function() {
    it ("should not wipeout Object prototype and be a mechanism", function() {
       var mech = m.propSet();
       expect(mech).to.have.property('toString');
-      expect(m.PropSetF).to.not.eql(undefined);         
+      expect(m._.PropSetF).to.not.eql(undefined);         
    });
    
    it ("should have correct properties", function() {

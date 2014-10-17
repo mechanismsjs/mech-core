@@ -28,4 +28,4 @@ WriteLnF.prototype.isMech = true;
 WriteLnF.prototype.isNull = false;
 WriteLnF.prototype.isPrim = false;
 m.writeLn = writeLn;
-m.WriteLnF = WriteLnF;
+m_.WriteLnF = WriteLnF;

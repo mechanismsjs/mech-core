@@ -25,4 +25,4 @@ NumMF.prototype = Object.create(NumF.prototype, {
    goStr: { enumerable: false, get: function() { return this._v.isMech ? this._v.goStr : this._vb ? this._vb.toString() : this._v.toString(); } },
 });
 m.numM = numM;
-m.NumMF = NumMF;
+m_.NumMF = NumMF;

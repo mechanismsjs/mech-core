@@ -2,7 +2,7 @@ describe("string mechanism - str", function() {
    it ("should not wipeout Object prototype and be a mechanism", function() {
      var mech = m.strM();
      expect(mech).to.have.property('toString');
-     expect(m.StrMF).to.not.eql(undefined);
+     expect(m._.StrMF).to.not.eql(undefined);
    });
 
    it ("should have correct properties", function() {

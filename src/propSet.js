@@ -38,4 +38,4 @@ PropSetF.prototype.isNull = false;
 PropSetF.prototype.isPrim = false;
 m.propSet = propSet;
 m.p$s = propSet;
-m.PropSetF = PropSetF;
+m_.PropSetF = PropSetF;

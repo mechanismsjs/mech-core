@@ -2,7 +2,7 @@ describe ("number primitive mechanism - num", function() {
    it ("should not wipeout Object prototype and be a mechanism", function() {
      var mech = m.num();
      expect(mech).to.have.property('toString');
-     expect (m.NumF).to.not.eql(undefined);
+     expect (m._.NumF).to.not.eql(undefined);
    });
 
    it ("should have correct properties", function() {

@@ -19,4 +19,4 @@ StrMF.prototype = Object.create(StrF.prototype, {
    }},
 });
 m.strM = strM;
-m.StrMF = StrMF;
+m_.StrMF = StrMF;
