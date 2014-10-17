@@ -30,4 +30,4 @@ StrF.prototype.isMech = true;
 StrF.prototype.isNull = false;
 StrF.prototype.isPrim = true;
 m.str = str;
-m_.StrF = StrF;
+m._.StrF = StrF;

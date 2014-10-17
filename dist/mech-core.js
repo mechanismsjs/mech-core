@@ -1,5 +1,5 @@
 // mech-core.js
-// version: 0.1.12
+// version: 0.1.13
 // author: Eric Hosick <erichosick@gmail.com> (http://www.erichosick.com/)
 // license: MIT
 (function() {
@@ -7,8 +7,8 @@
 
 var root = this; // window (browser) or exports (server)
 var m = root.m || { _ : {} }; // new module or merge with previous
-var m_ = m._ || {}; // new sub-module or merge with pervious
-m["version-core"] = '0.1.12'; // New library OR to use existing library (m for example), please fork and add to that project.
+m._ = m._ || {}; // new sub-module or merge with pervious
+m._["version-core"] = '0.1.13'; // New library OR to use existing library (m for example), please fork and add to that project.
 
 // Export module for Node and the browser.
 if(typeof module !== 'undefined' && module.exports) {
@@ -51,7 +51,7 @@ NumF.prototype.isMech = true;
 NumF.prototype.isNull = false;
 NumF.prototype.isPrim = true;
 m.num = num;
-m_.NumF = NumF;
+m._.NumF = NumF;
 // A number primitive that can contain a primitive.
 function NumMF(){}; 
 function numM(d) {
@@ -79,7 +79,7 @@ NumMF.prototype = Object.create(NumF.prototype, {
    goStr: { enumerable: false, get: function() { return this._v.isMech ? this._v.goStr : this._vb ? this._vb.toString() : this._v.toString(); } },
 });
 m.numM = numM;
-m_.NumMF = NumMF;
+m._.NumMF = NumMF;
 function StrF(){};
 function str(d){
    var f = Object.create(StrF.prototype);
@@ -112,7 +112,7 @@ StrF.prototype.isMech = true;
 StrF.prototype.isNull = false;
 StrF.prototype.isPrim = true;
 m.str = str;
-m_.StrF = StrF;
+m._.StrF = StrF;
 function StrMF(){};
 function strM(d){
    var f = Object.create(StrMF.prototype);
@@ -134,7 +134,7 @@ StrMF.prototype = Object.create(StrF.prototype, {
    }},
 });
 m.strM = strM;
-m_.StrMF = StrMF;
+m._.StrMF = StrMF;
 function PropGetF(){};
 function propGet(prop, item, itemGo) {
    var f = Object.create(PropGetF.prototype);
@@ -176,7 +176,7 @@ PropGetF.prototype.isNull = false;
 PropGetF.prototype.isPrim = false;
 m.propGet = propGet;
 m.p$ = propGet;
-m_.PropGetF = PropGetF;
+m._.PropGetF = PropGetF;
 function PropSetF(){};
 function propSet(prop, dest, src, itemGo) {
    var f = Object.create(PropSetF.prototype);
@@ -217,7 +217,7 @@ PropSetF.prototype.isNull = false;
 PropSetF.prototype.isPrim = false;
 m.propSet = propSet;
 m.p$s = propSet;
-m_.PropSetF = PropSetF;
+m._.PropSetF = PropSetF;
 function WriteLnF(){};
 function writeLn(text) {
    var f = Object.create(WriteLnF.prototype);
@@ -248,6 +248,6 @@ WriteLnF.prototype.isMech = true;
 WriteLnF.prototype.isNull = false;
 WriteLnF.prototype.isPrim = false;
 m.writeLn = writeLn;
-m_.WriteLnF = WriteLnF;
+m._.WriteLnF = WriteLnF;
 
 }.call(this));

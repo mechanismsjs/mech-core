@@ -32,4 +32,4 @@ NumF.prototype.isMech = true;
 NumF.prototype.isNull = false;
 NumF.prototype.isPrim = true;
 m.num = num;
-m_.NumF = NumF;
+m._.NumF = NumF;

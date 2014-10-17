@@ -39,4 +39,4 @@ PropGetF.prototype.isNull = false;
 PropGetF.prototype.isPrim = false;
 m.propGet = propGet;
 m.p$ = propGet;
-m_.PropGetF = PropGetF;
+m._.PropGetF = PropGetF;
