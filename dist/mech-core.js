@@ -6,15 +6,15 @@
 "use strict";
 
 var root = this; // window (browser) or exports (server)
-var m = root.m || { _ : {} }; // new module or merge with previous
-m._ = m._ || {}; // new sub-module or merge with pervious
-m._["version-core"] = '0.1.15'; // New library OR to use existing library (m for example), please fork and add to that project.
+var m = root.m || {}; // merge with previous or new module
+m._ = m._ || {}; // merge with pervious or new sub-module
+m._["version-core"] = '0.1.15'; // version set through gulp build
 
-// Export module for Node and the browser.
+// export module for node or the browser
 if(typeof module !== 'undefined' && module.exports) {
   module.exports = m;
 } else {
-  root.m = m
+  root.m = m;
 }
 
 // A number primitive that can not contain a primitive

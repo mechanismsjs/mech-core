@@ -1,11 +1,24 @@
 {
   "name": "mech-core",
+  "namesub": "core",
   "version": "0.1.15",
   "description": "Library of core mechanisms.",
   "main": "./dist/mech-core.js",
   "scripts": {
     "test": "gulp"
   },
+  "source": [
+    "src/util/header.js",
+    "src/mech.js",
+    "src/num.js",
+    "src/numM.js",
+    "src/str.js",
+    "src/strM.js",
+    "src/propGet.js",
+    "src/propSet.js",
+    "src/writeLn.js",
+    "src/util/footer.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/mechanismsjs/mech-core.git"

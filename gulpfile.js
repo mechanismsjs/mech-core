@@ -12,21 +12,10 @@ var mochaPhantom  = require('gulp-mocha-phantomjs')
 var browserify = require('browserify');
 var transform = require('vinyl-transform');
 
-source = [
-   'src/util/header.js',
-   'src/mech.js',
-   'src/num.js',
-   'src/numM.js',
-   'src/str.js',
-   'src/strM.js',
-   'src/propGet.js',
-   'src/propSet.js',
-   'src/writeLn.js',
-   'src/util/footer.js'
-];
-
+var source = pkg.source;
 var libName = pkg.name;
 var libFileName = pkg.name + '.js';
+var libSubName = pkg.namesub;
 var libMain = pkg.main;
 
 var banner = function(bundled) {
@@ -63,6 +52,8 @@ gulp.task('build', function(){
       .pipe(header(banner()))             // add header (your name, etc.)
       .pipe(replace('{{VERSION}}',        // update version tag in code
          pkg.version))
+      .pipe(replace('{{NAMESUB}}',        // update namesub tag in code
+         libSubName))
       .pipe(gulp.dest('dist'))            // dump pkg.name + '.js'
       .pipe(rename(libName + '.min.js'))  // rename for minify
       .pipe(uglify())                     // minify it
