@@ -6,6 +6,8 @@ function num(d) {
    return f;
 };
 NumF.prototype = Object.create(Object.prototype, {
+   isMech: { get: function() { return true; }},
+   isPrim: { get: function() { return true; }},      
    v: { enumerable: false,
       get: function() { return this.goNum; },
       set: function(d) {
@@ -28,8 +30,5 @@ NumF.prototype = Object.create(Object.prototype, {
    goArr: { enumerable: false, get: function() { return [this.goNum]; } },
    goBool: { enumerable: false, get: function() { return (this.goNum > 0); } }
 });
-NumF.prototype.isMech = true;
-NumF.prototype.isNull = false;
-NumF.prototype.isPrim = true;
 m.num = num;
 m._.NumF = NumF;

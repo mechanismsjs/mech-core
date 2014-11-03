@@ -5,6 +5,7 @@ function writeLn(text) {
    return f;
 }
 WriteLnF.prototype = Object.create(Object.prototype, {
+   isMech: { get: function() { return true; }},
    text: { enumerable: false,
       get: function() {  return this._t.isMech ? this._t.goStr : this._t; },
       set: function(d) { this._t = ((null === d) || (undefined === d)) ? "" : d; }
@@ -24,8 +25,5 @@ WriteLnF.prototype = Object.create(Object.prototype, {
       return i;
    }}
 });
-WriteLnF.prototype.isMech = true;
-WriteLnF.prototype.isNull = false;
-WriteLnF.prototype.isPrim = false;
 m.writeLn = writeLn;
 m._.WriteLnF = WriteLnF;

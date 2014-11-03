@@ -7,14 +7,7 @@ describe ("write a line of text to the console - writeLn", function() {
    
    it ("should have correct properties", function() {
       var mech = m.writeLn();
-      expect(mech).to.have.property('isMech');
       expect(mech.isMech).to.be.true;
-   
-      expect(mech).to.have.property('isNull');
-      expect(mech.isNull).to.be.false;
-   
-      expect(mech).to.have.property('isPrim');
-      expect(mech.isPrim).to.be.false;
    
       expect(mech).to.have.property('text');
       expect(mech).to.have.property('_t'); // imagined privacy

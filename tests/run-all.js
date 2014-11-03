@@ -8,4 +8,6 @@ require("./shared/strM.js");
 require("./shared/propGet.js");
 require("./shared/propSet.js");
 
+require("./shared/loop.js");
+
 require("./shared/writeLn.js");

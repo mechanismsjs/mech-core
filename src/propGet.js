@@ -7,6 +7,7 @@ function propGet(prop, item, itemGo) {
    return f;
 };
 PropGetF.prototype = Object.create(Object.prototype, {
+   isMech: { get: function() { return true; }},
    prop: { enumerable: false,
       get: function() {  return this._prop.isMech ? this._prop.goStr : this._prop; },
       set: function(d) { this._prop = ((null === d) || (undefined === d)) ? "" : d; }
@@ -34,9 +35,6 @@ PropGetF.prototype = Object.create(Object.prototype, {
    goArr: { enumerable: false, get: function() { return [this.go]; } },
    goBool: { enumerable: false, get: function() { return Boolean(this.go); }}
 });
-PropGetF.prototype.isMech = true;
-PropGetF.prototype.isNull = false;
-PropGetF.prototype.isPrim = false;
 m.propGet = propGet;
 m.p$ = propGet;
 m._.PropGetF = PropGetF;

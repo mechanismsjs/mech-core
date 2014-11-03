@@ -1,5 +1,5 @@
 // mech-core.js
-// version: 0.1.15
+// version: 0.1.16
 // author: Eric Hosick <erichosick@gmail.com> (http://www.erichosick.com/)
 // license: MIT
 (function() {
@@ -8,7 +8,7 @@
 var root = this; // window (browser) or exports (server)
 var m = root.m || {}; // merge with previous or new module
 m._ = m._ || {}; // merge with pervious or new sub-module
-m._["version-core"] = '0.1.15'; // version set through gulp build
+m._["version-core"] = '0.1.16'; // version set through gulp build
 
 // export module for node or the browser
 if(typeof module !== 'undefined' && module.exports) {
@@ -25,6 +25,8 @@ function num(d) {
    return f;
 };
 NumF.prototype = Object.create(Object.prototype, {
+   isMech: { get: function() { return true; }},
+   isPrim: { get: function() { return true; }},      
    v: { enumerable: false,
       get: function() { return this.goNum; },
       set: function(d) {
@@ -47,9 +49,6 @@ NumF.prototype = Object.create(Object.prototype, {
    goArr: { enumerable: false, get: function() { return [this.goNum]; } },
    goBool: { enumerable: false, get: function() { return (this.goNum > 0); } }
 });
-NumF.prototype.isMech = true;
-NumF.prototype.isNull = false;
-NumF.prototype.isPrim = true;
 m.num = num;
 m._.NumF = NumF;
 // A number primitive that can contain a primitive.
@@ -87,6 +86,8 @@ function str(d){
    return f;
 }
 StrF.prototype = Object.create(Object.prototype, {
+   isMech: { get: function() { return true; }},
+   isPrim: { get: function() { return true; }},
    v: { enumerable: false,
       get: function() { return this.goStr; },
       set: function(d) { this._v = String(d); }},
@@ -108,11 +109,9 @@ StrF.prototype = Object.create(Object.prototype, {
    goArr: { enumerable: false, get: function() { return [this.goStr]; } },
    goBool: { enumerable: false, get: function() { return (this.goNum > 0); } }
 });
-StrF.prototype.isMech = true;
-StrF.prototype.isNull = false;
-StrF.prototype.isPrim = true;
 m.str = str;
 m._.StrF = StrF;
+
 function StrMF(){};
 function strM(d){
    var f = Object.create(StrMF.prototype);
@@ -144,6 +143,7 @@ function propGet(prop, item, itemGo) {
    return f;
 };
 PropGetF.prototype = Object.create(Object.prototype, {
+   isMech: { get: function() { return true; }},
    prop: { enumerable: false,
       get: function() {  return this._prop.isMech ? this._prop.goStr : this._prop; },
       set: function(d) { this._prop = ((null === d) || (undefined === d)) ? "" : d; }
@@ -171,12 +171,10 @@ PropGetF.prototype = Object.create(Object.prototype, {
    goArr: { enumerable: false, get: function() { return [this.go]; } },
    goBool: { enumerable: false, get: function() { return Boolean(this.go); }}
 });
-PropGetF.prototype.isMech = true;
-PropGetF.prototype.isNull = false;
-PropGetF.prototype.isPrim = false;
 m.propGet = propGet;
 m.p$ = propGet;
 m._.PropGetF = PropGetF;
+
 function PropSetF(){};
 function propSet(prop, dest, src, itemGo) {
    var f = Object.create(PropSetF.prototype);
@@ -187,6 +185,7 @@ function propSet(prop, dest, src, itemGo) {
    return f;
 };
 PropSetF.prototype = Object.create(Object.prototype, {
+   isMech: { get: function() { return true; }},
    prop: { enumerable: false,
       get: function() {  return this._prop.isMech ? this._prop.goStr : this._prop; },
       set: function(d) { this._prop = ((null === d) || (undefined === d)) ? "" : d; }
@@ -212,12 +211,49 @@ PropSetF.prototype = Object.create(Object.prototype, {
       return s;
    }}
 });
-PropSetF.prototype.isMech = true;
-PropSetF.prototype.isNull = false;
-PropSetF.prototype.isPrim = false;
 m.propSet = propSet;
 m.p$s = propSet;
 m._.PropSetF = PropSetF;
+function LoopF(){};
+function loop(items, max) {
+   var f = Object.create(LoopF.prototype);
+   f._i = items;
+   f._m = max;
+   return f;
+};
+LoopF.prototype = Object.create(Object.prototype, {
+   isMech: { get: function() { return true; }},
+   go: { enumerable: false, get: function() {
+      var m = (undefined === this._m ) ? undefined : (this._m.isMech ? this._m.go : this._m);
+      
+      if ( undefined != this._i ) {
+         if ( undefined === m ) {
+            var last = undefined;
+            var cur = this._i.go;
+            while (undefined !== cur) {
+               last = cur;
+               cur = this._i.go;
+            }
+            return last;
+         } else {
+            var i = 0;
+            m = m - 1;
+            if ( m > 0 ) {
+               while ( i < m) {
+                  this._i.go;
+                  i++;
+               }
+               return this._i.go;
+            } else {
+               return undefined;
+            }
+         }
+         return undefined;
+      }
+   }}
+});
+m.loop = loop;
+m._.LoopF = LoopF;
 function WriteLnF(){};
 function writeLn(text) {
    var f = Object.create(WriteLnF.prototype);
@@ -225,6 +261,7 @@ function writeLn(text) {
    return f;
 }
 WriteLnF.prototype = Object.create(Object.prototype, {
+   isMech: { get: function() { return true; }},
    text: { enumerable: false,
       get: function() {  return this._t.isMech ? this._t.goStr : this._t; },
       set: function(d) { this._t = ((null === d) || (undefined === d)) ? "" : d; }
@@ -244,9 +281,6 @@ WriteLnF.prototype = Object.create(Object.prototype, {
       return i;
    }}
 });
-WriteLnF.prototype.isMech = true;
-WriteLnF.prototype.isNull = false;
-WriteLnF.prototype.isPrim = false;
 m.writeLn = writeLn;
 m._.WriteLnF = WriteLnF;
 

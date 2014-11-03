@@ -5,6 +5,8 @@ function str(d){
    return f;
 }
 StrF.prototype = Object.create(Object.prototype, {
+   isMech: { get: function() { return true; }},
+   isPrim: { get: function() { return true; }},
    v: { enumerable: false,
       get: function() { return this.goStr; },
       set: function(d) { this._v = String(d); }},
@@ -26,8 +28,5 @@ StrF.prototype = Object.create(Object.prototype, {
    goArr: { enumerable: false, get: function() { return [this.goStr]; } },
    goBool: { enumerable: false, get: function() { return (this.goNum > 0); } }
 });
-StrF.prototype.isMech = true;
-StrF.prototype.isNull = false;
-StrF.prototype.isPrim = true;
 m.str = str;
 m._.StrF = StrF;

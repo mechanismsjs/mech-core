@@ -7,13 +7,7 @@ describe("string mechanism - str", function() {
 
    it ("should have correct properties", function() {
      var mech = m.str();
-     expect(mech).to.have.property('isMech');
      expect(mech.isMech).to.be.true;
-       
-     expect(mech).to.have.property('isNull');
-     expect(mech.isNull).to.be.false;
-       
-     expect(mech).to.have.property('isPrim');
      expect(mech.isPrim).to.be.true;
        
      expect(mech).to.have.property('v');

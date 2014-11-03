@@ -1,7 +1,7 @@
 {
   "name": "mech-core",
   "namesub": "core",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "Library of core mechanisms.",
   "main": "./dist/mech-core.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "src/strM.js",
     "src/propGet.js",
     "src/propSet.js",
+    "src/loop.js",
     "src/writeLn.js",
     "src/util/footer.js"
   ],
@@ -49,6 +50,8 @@
     "gulp-replace": "^0.4.0",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.1",
+    "mech-emit": "^0.1.7",
+    "merge": "^1.2.0",
     "mocha": "^1.21.4",
     "vinyl-transform": "0.0.1"
   }

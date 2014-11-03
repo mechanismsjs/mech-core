@@ -8,14 +8,7 @@ describe ("set a property mechanism - propSet", function() {
    
    it ("should have correct properties", function() {
       var mech = m.propSet();
-      expect(mech).to.have.property('isMech');
       expect(mech.isMech).to.be.true;
-   
-      expect(mech).to.have.property('isNull');
-      expect(mech.isNull).to.be.false;
-   
-      expect(mech).to.have.property('isPrim');
-      expect(mech.isPrim).to.be.false;
    
       expect(mech).to.have.property('prop');
       expect(mech).to.have.property('_prop'); // imagined privacy
