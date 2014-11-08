@@ -1,7 +1,7 @@
 {
   "name": "mech-core",
   "namesub": "core",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Library of core mechanisms.",
   "main": "./dist/mech-core.js",
   "scripts": {
@@ -18,7 +18,6 @@
     "src/propSet.js",
     "src/loop.js",
     "src/map.js",
-    "src/reduce.js",
     "src/writeLn.js",
     "src/util/footer.js"
   ],
