@@ -13,6 +13,7 @@ A library of core mechanisms. See [Mechanisms Home][mech-home-link] for more inf
 # In This Library
 
 * *[loop](#loop-mechanism)* - Loop a maximum number of times or until undefined.
+* *[map](#map-mechanism)* - "Calls a defined callback function (policy) on each element of an array, and returns an array that contains the results". 
 * *[num](#num-mechanism)* - a numeric primitive as a mechanism.
 * *[numM](#num-mechanism)* - a numeric primitive whose value can be a mechanism.
 * *[propGet](#propget-mechanism)* - returns the property of a mechanism.
@@ -57,6 +58,135 @@ m.loop().go; // returns undefined
 m.loop(undefined).go; // returns undefined
 m.loop([3,4,8],0).go; // returns undefined
 ```
+## <a name="map-mechanism"></a> Map Mechanism
+
+Traditionally, mapping in javascript is done as follows:
+
+```javascript
+
+// javascript traditional
+[1,2,3,4,5].map(
+   function(n) {
+     return n + 2;
+ });
+```
+
+This is the "push-pull" approach to programming: we "push" data into the algorithm and pull a result.
+
+Mechanisms use a "pull" approach to programming: an algorithm "pulls" the data into itself. Let's see what that looks like:
+
+```javascript
+// javascript mechanisms
+m.map(
+  m.add(
+    2,
+    m.emitArr([1,2,3,4,5])
+  )
+).go;
+```
+
+In his case, map returns an array by calling add until there is nothing left to emit.
+
+The resulting array is:
+
+```javascript
+[3,4,5,6,7]
+```
+
+Basically, a map mechanism simply calls the emitter until undefined is reached or the maximum number of elements has been reached. A maximum number of elements is required because an emitter can emit an infinite range of values such as:
+
+```javascript
+m.emitRange(1,Infinity,23);
+```
+
+How about two emitters of different lengths:
+
+```javascript
+m.map(
+   m.add(
+      m.emitRange(1,4,1),
+      m.emitArr([1,2,3,4,5])
+   )
+).go;
+```
+
+The resulting array is:
+
+```javascript
+[2,4,6,8]
+```
+
+We can emit strings:
+
+```javascript
+m.map(
+   m.addS(
+      m.emitArr(["hello","goodbye","begin","end"]),
+      "ay"
+   )
+).go;
+```
+
+The resulting array is:
+
+```javascript
+["helloay", "goodbyeay", "beginay", "enday"]
+```
+
+If we swap arguments we get:
+
+```javascript
+m.map(
+  m.addS(
+    "ay",
+    m.emitArr(["hello","goodbye","begin","end"])
+  )
+).go;
+```
+
+The resulting array is:
+
+```javascript
+["ayhello", "aygoodbye", "aybegin", "ayend"]
+```
+
+We can repeat a sequence:
+
+```javascript
+m.map(
+  m.mul(
+    2,
+    m.emitArr([2,4,6],true)
+   ),
+  7
+).go;
+```
+
+Will result in:
+
+```javascript
+[4,8,12,4,8,12,4]
+```
+
+We've added true to the emitArr so it repeats. We've limited the maximum number of elements in our map to 7.
+
+Let's repeat two sequences of different lengths 20 times:
+
+```javascript
+m.map(
+  m.add(
+    m.emitArr([0,2],true),
+    m.emitArr([1,3,5],true)
+   ),
+  20
+).go;
+```
+
+We can start to get cool patterns:
+
+```javascript
+[ 1, 5, 5, 3, 3, 7, 1, 5, 5, 3, 3, 7, 1, 5, 5, 3, 3, 7, 1, 5 ]
+```
 
 ## <a name="num-mechanism"></a>num and numM Mechanisms
 
@@ -75,7 +205,6 @@ m.num("Hello").go; // returns NaN
 ```javascript
 m.numM(m.str("12")).go; // returns 12;
 ```
-
 ## <a name="propget-mechanism"></a> propGet Mechanism
 
 Returns the property of a mechanism or object.

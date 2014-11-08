@@ -17,6 +17,8 @@
     "src/propGet.js",
     "src/propSet.js",
     "src/loop.js",
+    "src/map.js",
+    "src/reduce.js",
     "src/writeLn.js",
     "src/util/footer.js"
   ],
@@ -51,6 +53,7 @@
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.1",
     "mech-emit": "^0.1.7",
+    "mech-math": "^0.1.10",
     "merge": "^1.2.0",
     "mocha": "^1.21.4",
     "vinyl-transform": "0.0.1"
