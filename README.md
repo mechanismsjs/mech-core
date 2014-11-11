@@ -16,6 +16,7 @@ A library of core mechanisms. See [Mechanisms Home][mech-home-link] for more inf
 * *[map](#map-mechanism)* - "Calls a defined callback function (policy) on each element of an array, and returns an array that contains the results". 
 * *[num](#num-mechanism)* - a numeric primitive as a mechanism.
 * *[numM](#num-mechanism)* - a numeric primitive whose value can be a mechanism.
+* *[parentPropSet](#parentpropset-mechanism)* - Sets the first instance found of given parent property.
 * *[propGet](#propget-mechanism)* - returns the property of a mechanism.
 * *[propSet](#propset-mechanism)* - sets the property of a mechanism.
 * *[str](#str-mechanism)* - a string primitive as a mechanism.
@@ -205,6 +206,31 @@ m.num("Hello").go; // returns NaN
 ```javascript
 m.numM(m.str("12")).go; // returns 12;
 ```
+## <a name="parentpropset-mechanism"></a> parentPropSet Mechanism
+
+Sets the first instance found of given parent property.
+
+### Parents
+
+Mechanisms (see *left* and *right* below) when used in another mechanism (see *add*) become children of that mechanism.
+
+```javascript
+var left = m.numM(5);
+var right = m.numM(6);
+var add = math.add(left, right);
+```
+
+*Left* and *right* end up with a *_parDir* property that is a reference to their parent: in this case the *add* mechanism.
+
+*parentPropSet* allows a child mechanism to set the property of a parent.
+
+### Examples
+
+
+
+
+
+
 ## <a name="propget-mechanism"></a> propGet Mechanism
 
 Returns the property of a mechanism or object.

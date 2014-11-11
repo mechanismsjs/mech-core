@@ -1,60 +1,62 @@
 {
-  "name": "mech-core",
-  "namesub": "core",
-  "version": "0.1.17",
-  "description": "Library of core mechanisms.",
-  "main": "./dist/mech-core.js",
-  "scripts": {
-    "test": "gulp"
-  },
-  "source": [
-    "src/util/header.js",
-    "src/mech.js",
-    "src/num.js",
-    "src/numM.js",
-    "src/str.js",
-    "src/strM.js",
-    "src/propGet.js",
-    "src/propSet.js",
-    "src/loop.js",
-    "src/map.js",
-    "src/writeLn.js",
-    "src/util/footer.js"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mechanismsjs/mech-core.git"
-  },
-  "keywords": [
-    "mechanisms",
-    "client",
-    "server",
-    "library",
-    "browser"
-  ],
-  "author": "Eric Hosick <erichosick@gmail.com> (http://www.erichosick.com/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mechanismsjs/mech-core/issues"
-  },
-  "homepage": "https://github.com/mechanismsjs/mech-core",
-  "devDependencies": {
-    "browserify": "^6.1.0",
-    "chai": "^1.9.2",
-    "gulp": "^3.8.8",
-    "gulp-coffee": "^2.2.0",
-    "gulp-concat": "^2.4.1",
-    "gulp-header": "^1.1.1",
-    "gulp-mocha": "^1.1.0",
-    "gulp-mocha-phantomjs": "^0.5.1",
-    "gulp-rename": "^1.2.0",
-    "gulp-replace": "^0.4.0",
-    "gulp-uglify": "^1.0.1",
-    "gulp-util": "^3.0.1",
-    "mech-emit": "^0.1.7",
-    "mech-math": "^0.1.10",
-    "merge": "^1.2.0",
-    "mocha": "^1.21.4",
-    "vinyl-transform": "0.0.1"
-  }
+	"name": "mech-core",
+	"namesub": "core",
+	"version": "0.1.18",
+	"description": "Library of core mechanisms.",
+	"main": "./dist/mech-core.js",
+	"scripts": {
+		"test": "gulp"
+	},
+	"source": [
+		"src/util/header.js",
+		"src/mech.js",
+		"src/num.js",
+		"src/numM.js",
+		"src/str.js",
+		"src/strM.js",
+		"src/propGet.js",
+		"src/propSet.js",
+		"src/parentPropSet.js",
+		"src/loop.js",
+		"src/map.js",
+		"src/filter.js",
+		"src/writeLn.js",
+		"src/util/footer.js"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mechanismsjs/mech-core.git"
+	},
+	"keywords": [
+		"mechanisms",
+		"client",
+		"server",
+		"library",
+		"browser"
+	],
+	"author": "Eric Hosick <erichosick@gmail.com> (http://www.erichosick.com/)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/mechanismsjs/mech-core/issues"
+	},
+	"homepage": "https://github.com/mechanismsjs/mech-core",
+	"devDependencies": {
+		"browserify": "^6.1.0",
+		"chai": "^1.9.2",
+		"gulp": "^3.8.8",
+		"gulp-coffee": "^2.2.0",
+		"gulp-concat": "^2.4.1",
+		"gulp-header": "^1.1.1",
+		"gulp-mocha": "^1.1.0",
+		"gulp-mocha-phantomjs": "^0.5.1",
+		"gulp-rename": "^1.2.0",
+		"gulp-replace": "^0.4.0",
+		"gulp-uglify": "^1.0.1",
+		"gulp-util": "^3.0.1",
+		"mech-emit": "^0.1.7",
+		"mech-math": "^0.1.10",
+		"merge": "^1.2.0",
+		"mocha": "^1.21.4",
+		"vinyl-transform": "0.0.1"
+	}
 }
