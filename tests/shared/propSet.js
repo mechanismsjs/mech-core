@@ -50,15 +50,14 @@ describe("set a property mechanism - propSet", function() {
 		expect(mech4.itemGo).to.be.true;
 
 		var mech5 = m.propSet(null, null, null, null);
-		expect(mech4.prop).to.equal("");
-		expect(mech4.src).to.eql.null;
-		expect(mech4.dest).to.eql.null;
-		expect(mech4.itemGo).to.be.true;
+		expect(mech5.prop).to.equal("");
+		expect(mech5.src).to.eql.null;
+		expect(mech5.dest).to.eql.null;
+		expect(mech5.itemGo).to.be.true;
+	})
 
-	});
 
 	it("sets the value of a valid item given everything is valid", function() {
-
 		var mech2 = m.num(8);
 		var mech3 = m.num(7);
 		expect(mech2.v).to.equal(8);
@@ -72,11 +71,9 @@ describe("set a property mechanism - propSet", function() {
 
 		mech.go;
 		expect(mech2.v).to.equal(7);
-
 	});
 
 	it("sets the value of a valid item given a primitive value (function syntax)", function() {
-
 		var mech2 = m.num(8);
 		expect(mech2.v).to.equal(8);
 
@@ -97,7 +94,6 @@ describe("set a property mechanism - propSet", function() {
 
 		mech3.go;
 		expect(mech2.v).to.equal(22);
-
 	});
 
 	it("should set _parDir of child mechanisms to parent", function() {
@@ -109,5 +105,6 @@ describe("set a property mechanism - propSet", function() {
 		expect(mech2._parDir).to.equal(mech4);
 		expect(mech3._parDir).to.equal(mech4);
 	});
+
 
 });

@@ -1,4 +1,4 @@
-describe("filterping mechanism - filter", function() {
+describe("filter mechanism - filter", function() {
 
 	it("should not wipeout Object prototype and be a mechanism", function() {
 		var mech = m.filter();

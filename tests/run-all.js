@@ -13,5 +13,6 @@ require("./shared/parentPropSet.js");
 require("./shared/loop.js");
 require("./shared/map.js");
 require("./shared/filter.js");
+require("./shared/reduce.js");
 
 require("./shared/writeLn.js");

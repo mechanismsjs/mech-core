@@ -12,15 +12,62 @@ A library of core mechanisms. See [Mechanisms Home][mech-home-link] for more inf
 
 # In This Library
 
+* *[filter](#filter-mechanism)* - Filter items emitted from a source based on configured algorithm using each emitted item.
 * *[loop](#loop-mechanism)* - Loop a maximum number of times or until undefined.
-* *[map](#map-mechanism)* - "Calls a defined callback function (policy) on each element of an array, and returns an array that contains the results". 
+* *[map](#map-mechanism)* - "Calls a defined callback function (policy) on each element of an array, and returns an array that contains the results".
 * *[num](#num-mechanism)* - a numeric primitive as a mechanism.
 * *[numM](#num-mechanism)* - a numeric primitive whose value can be a mechanism.
 * *[parentPropSet](#parentpropset-mechanism)* - Sets the first instance found of given parent property.
 * *[propGet](#propget-mechanism)* - returns the property of a mechanism.
 * *[propSet](#propset-mechanism)* - sets the property of a mechanism.
+* *[reduce](#reduce-mechanism)* - Applies the configured algorithm to itself reducing it to a single result.
 * *[str](#str-mechanism)* - a string primitive as a mechanism.
 * *[strM](#str-mechanism)* - a string primitive whose value can be a mechanism.
+* *[writeLn](#writeln-mechanism)* - writes text to the console.
+
+
+## <a name="filter-mechanism"></a> Filter Mechanism
+
+The filter mechanism is similar to an [emitter][mech-emit-link] in that each invocation emits the next **filtered** value.
+
+```javascript
+var filter = m.filter(
+  m.eqlNum(0,
+    m.modulus(m.parentPropSet("fv", m.emitFromRange(1,2000,1)), 2)
+  )
+);
+```
+Invoking go on the filter causes the next **filtered** value to return:
+
+```javascript
+filter.go; // returns 2
+filter.go; // returns 4
+filter.go; // returns 6
+filter.go; // returns 8
+```
+
+### The Filter Explained
+
+The filter is reading from an emitted range:
+
+```javascript
+m.emitFromRange(1,2000,1)
+```
+
+The emitted value is used twice: once in the modulus comparison and then once as the return value if it passes the filter. In the above example, the reference to the *emitFromRange* instance is only accessible within the *modulus* instance. *modulus* is returning the modulus of the emitted value, not the emitted value itself.
+
+To get around this, the filter mechanism is designed to return whatever value is located in the filter.fv property whenever invocation of goBool on the internal mechanism returns true.
+
+This example uses the *parentPropSet* mechanism although [cell scoping][mech-scope-cell-link] could also be used. That is an example for another post.
+
+```javascript
+m.parentPropSet("fv", m.emitFromRange(1,2000,1,true))
+```
+
+So, in this case, the value emitted from the range is written to the fv property of the filter and the value is also passed up to the modulus mechanism (the parent mechanism).
+
+This gives us the ability to configure any type of filter we want and we can filter on an source: even ones that don't have a known length (like a socket stream).
+
 
 ## <a name="loop-mechanism"></a> Loop Mechanism
 
@@ -317,6 +364,76 @@ m.propSet(
 );
 ```
 
+
+## <a name="reduce-mechanism"></a> reduce Mechanism
+
+Given a dual-argument algorithm, the reduce mechanism invokes the algorithm until undefined is returned by that algorithm.
+
+```javascript
+var reduceAdd = m.reduce(
+  m.add(
+    null,
+    m.emitFromArr([1, 5, 7])
+  )
+);
+
+reduceAdd.go; // returns 13
+```
+
+*add* is a dual argument algorithm. The emitter is configured on the *right* (2nd argument) and *null* configured on the *left* (1st argument).
+
+*Reduce* places the first emitted value in the *right* argument: which is why *right* is null.
+
+The *reduce* mechanism continues to reduce until undefined is emitted.
+
+```javascript
+var reduceAdd = m.reduce(
+  m.add(
+    null,
+    m.emitFromArr([1, 5, 7, undefined, 22, 34, 56])
+  )
+);
+
+reduceAdd.go; // returns 13
+reduceAdd.go; // returns 125
+reduceAdd.go; // returns 125
+```
+
+Invoking reduce again will cause reduce to continue reducing from it's prior state.
+
+Consider a socket emitter that periodically returning numerical values.
+
+```javascript
+var avgSock = m.reduce(
+  m.avg(
+    null,
+    m.emitFromSocket('http://source', 423)
+  )
+);
+```
+
+Invoking *avgSock* will read from and reduce the data coming from the stream until no more data is available.
+
+Invoking *avgSock* at a latter time would continue the averaging process (in a callback on the socket for example).
+
+Finding the largest value:
+
+```javascript
+var largest = m.reduce(
+  m.gt(
+    null,
+    m.add(
+      6,
+      m.emitFromArr([47,11,42,102,13])
+    )
+  )
+);
+
+largest.go; // 108
+```
+
+In the above example, add is adding 6 to every emitted value before the reducer applies the reduction algorithm: hence why 108, instead of 102, is the largest value.
+
 ## <a name="str-mechanism"></a>str and strM Mechanisms
 
 Although you can use literals when programming, we also offer a string mechanism.
@@ -333,6 +450,22 @@ m.str("what").goBool; // returns false
 
 ```javascript
 m.strM(m.num(32)).go; // returns "32";
+```
+
+## <a name="writeln-mechanism"></a>writeLn Mechanism
+
+Writes text to the console.
+
+
+```javascript
+
+// writes "hi" to the console.
+m.writeLn("hi").go;
+
+// writes "(4 + 5)" to the console.
+m.writeLn(
+  m.add(4 , 5)
+).go;
 ```
 
 ## Using In Your Projects

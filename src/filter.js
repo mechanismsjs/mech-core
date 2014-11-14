@@ -3,7 +3,6 @@ function FilterF() {};
 function filter(algo) {
 	var f = Object.create(FilterF.prototype);
 	f._a = algo;
-	f._obj = "filter";
 	if (f._a && f._a.isMech) {
 		f._a._parDir = f;
 	}
