@@ -31,7 +31,7 @@ FilterF.prototype = Object.create(Object.prototype, {
 			while (!r) {
 				r = this._a.goBool;
 			}
-			return this._fv;
+			return this._fv; // _fv could be emitter or _fv set by behavior ran when this._a.goBool is invoked
 		}
 	},
 	goNum: {
