@@ -577,7 +577,7 @@ ParPropSetF.prototype = Object.create(Object.prototype, {
 });
 m.parentPropSet = parentPropSet;
 m._.ParPropSetF = ParPropSetF;
-function LoopF() {};
+function LoopF() {}
 
 function loop(items, max) {
 	var f = Object.create(LoopF.prototype);
@@ -590,7 +590,7 @@ function loop(items, max) {
 		f._m._parDir = f;
 	}
 	return f;
-};
+}
 LoopF.prototype = Object.create(Object.prototype, {
 	isMech: {
 		get: function() {
@@ -624,7 +624,6 @@ LoopF.prototype = Object.create(Object.prototype, {
 						return undefined;
 					}
 				}
-				return undefined;
 			}
 		}
 	}
@@ -715,7 +714,7 @@ FilterF.prototype = Object.create(Object.prototype, {
 			while (!r) {
 				r = this._a.goBool;
 			}
-			return this._fv;
+			return this._fv; // _fv could be emitter or _fv set by behavior ran when this._a.goBool is invoked
 		}
 	},
 	goNum: {
@@ -742,6 +741,7 @@ FilterF.prototype = Object.create(Object.prototype, {
 });
 m.filter = filter;
 m._.FilterF = FilterF;
+
 function WriteLnF() {};
 
 function writeLn(text) {

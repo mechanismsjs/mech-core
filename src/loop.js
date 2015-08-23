@@ -1,4 +1,4 @@
-function LoopF() {};
+function LoopF() {}
 
 function loop(items, max) {
 	var f = Object.create(LoopF.prototype);
@@ -11,7 +11,7 @@ function loop(items, max) {
 		f._m._parDir = f;
 	}
 	return f;
-};
+}
 LoopF.prototype = Object.create(Object.prototype, {
 	isMech: {
 		get: function() {
@@ -45,7 +45,6 @@ LoopF.prototype = Object.create(Object.prototype, {
 						return undefined;
 					}
 				}
-				return undefined;
 			}
 		}
 	}

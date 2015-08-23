@@ -482,6 +482,8 @@ There are **a lot** of core mechanisms to add. Many of them can be created in a 
 
 ### Setup
 
+### Setup
+
 Install:
 
     $ npm install
@@ -492,4 +494,4 @@ Continuous test:
 
 Test:
 
-    $ gulp mocha
+    $ gulp webtests
