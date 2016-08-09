@@ -21,6 +21,7 @@ A library of core mechanisms. See [Mechanisms Home][mech-home-link] for more inf
 * *[propGet](#propget-mechanism)* - returns the property of a mechanism.
 * *[propSet](#propset-mechanism)* - sets the property of a mechanism.
 * *[reduce](#reduce-mechanism)* - Applies the configured algorithm to itself reducing it to a single result.
+* *[self](#self-mechanism)* - a mechanism which returns the 'this' reference.
 * *[str](#str-mechanism)* - a string primitive as a mechanism.
 * *[strM](#str-mechanism)* - a string primitive whose value can be a mechanism.
 * *[writeLn](#writeln-mechanism)* - writes text to the console.
@@ -433,6 +434,21 @@ largest.go; // 108
 ```
 
 In the above example, add is adding 6 to every emitted value before the reducer applies the reduction algorithm: hence why 108, instead of 102, is the largest value.
+
+## <a name="self-mechanism"></a>self Mechanism
+
+Get a reference to 'this'.
+
+* *m.str(val)* - a mechanisms that contains a reference to this.
+
+Note: Can be used to contain references to other things.
+
+Get a reference to 'this' input:
+
+```javascript
+<input type="text" id="S1:A:1" onfocus="m.propGet('value', m.self(this)).go;">
+```
+
 
 ## <a name="str-mechanism"></a>str and strM Mechanisms
 
