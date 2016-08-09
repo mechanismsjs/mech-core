@@ -1,4 +1,4 @@
-function ParPropSetF() {};
+function ParPropSetF() {}
 
 function parentPropSet(prop, src, itemGo) {
 	var f = Object.create(ParPropSetF.prototype);
@@ -12,7 +12,7 @@ function parentPropSet(prop, src, itemGo) {
 	}
 	f.itemGo = itemGo;
 	return f;
-};
+}
 ParPropSetF.prototype = Object.create(Object.prototype, {
 	isMech: {
 		get: function() {

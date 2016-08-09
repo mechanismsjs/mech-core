@@ -38,7 +38,7 @@ describe("mapping mechanism - map", function() {
 	});
 
 	it("should return an emitFromRange as an array", function() {
-		var mech = m.map(m.emitFromRange(1, 2, .5));
+		var mech = m.map(m.emitFromRange(1, 2, 0.5));
 		expect(mech.goNum).to.have.length(3);
 		expect(mech.goNum[0]).to.equal(1);
 		expect(mech.goNum[1]).to.equal(1.5);
@@ -111,11 +111,11 @@ describe("mapping mechanism - map", function() {
 		expect(mech.go[3]).to.equal("hello");
 		expect(mech.go[4]).to.equal("hello");
 
-		var mech = m.map(17, 3);
-		expect(mech.go).to.have.length(3);
-		expect(mech.go[0]).to.equal(17);
-		expect(mech.go[1]).to.equal(17);
-		expect(mech.go[2]).to.equal(17);
+		var mech2 = m.map(17, 3);
+		expect(mech2.go).to.have.length(3);
+		expect(mech2.go[0]).to.equal(17);
+		expect(mech2.go[1]).to.equal(17);
+		expect(mech2.go[2]).to.equal(17);
 	});
 
 	it("should allow a mechanism as a max", function() {

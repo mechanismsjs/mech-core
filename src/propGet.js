@@ -1,4 +1,4 @@
-function PropGetF() {};
+function PropGetF() {}
 
 function propGet(prop, item, itemGo) {
    var f = Object.create(PropGetF.prototype);
@@ -12,7 +12,7 @@ function propGet(prop, item, itemGo) {
    }
    f.itemGo = itemGo;
    return f;
-};
+}
 PropGetF.prototype = Object.create(Object.prototype, {
    isMech: {
       get: function() {
@@ -64,7 +64,7 @@ PropGetF.prototype = Object.create(Object.prototype, {
       enumerable: false,
       get: function() {
          var i = this.go;
-         return (null == i) ? "" : String(this.go);
+         return (null === i) | (undefined === i) ? "" : String(this.go);
       }
    },
    goArr: {

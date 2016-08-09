@@ -1,4 +1,4 @@
-function FilterF() {};
+function FilterF() {}
 
 function filter(algo) {
 	var f = Object.create(FilterF.prototype);
@@ -7,7 +7,7 @@ function filter(algo) {
 		f._a._parDir = f;
 	}
 	return f;
-};
+}
 FilterF.prototype = Object.create(Object.prototype, {
 	isMech: {
 		get: function() {

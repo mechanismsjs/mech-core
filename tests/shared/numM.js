@@ -66,11 +66,11 @@ describe("number mechanism - numM", function() {
 		expect(mech).to.not.have.property("_vb");
 		expect(mech.go).to.equal(3);
 
-		var mech = m.numM("stringisbad");
-		expect(mech._vb).to.equal("stringisbad");
-		mech.v = null;
-		expect(mech).to.not.have.property("_vb");
-		expect(mech.go).to.equal(0);
+		var mech2 = m.numM("stringisbad");
+		expect(mech2._vb).to.equal("stringisbad");
+		mech2.v = null;
+		expect(mech2).to.not.have.property("_vb");
+		expect(mech2.go).to.equal(0);
 	});
 
 });

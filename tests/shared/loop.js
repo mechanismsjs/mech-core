@@ -15,11 +15,11 @@ describe("loopping mechanism - loop", function() {
 		var mech = m.loop(m.emitFromArr([1, 2, 3, 4, 5, 6, 7, 8]), 5);
 		expect(mech.go).to.equal(5);
 
-		var mech = m.loop(m.emitFromArr([1, 2, 3, 4, 5, 6, 7, 8]), 3);
-		expect(mech.go).to.equal(3);
+		var mech2 = m.loop(m.emitFromArr([1, 2, 3, 4, 5, 6, 7, 8]), 3);
+		expect(mech2.go).to.equal(3);
 
-		var mech = m.loop(m.emitFromArr([1, 2, 3, 4, 5, 6, 7, 8]), 0);
-		expect(mech.go).to.eql(undefined);
+		var mech3 = m.loop(m.emitFromArr([1, 2, 3, 4, 5, 6, 7, 8]), 0);
+		expect(mech3.go).to.eql(undefined);
 	});
 
 	it("should loop until the item is undefined and return the last value.", function() {

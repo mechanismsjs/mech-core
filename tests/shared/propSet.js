@@ -54,7 +54,7 @@ describe("set a property mechanism - propSet", function() {
 		expect(mech5.src).to.eql.null;
 		expect(mech5.dest).to.eql.null;
 		expect(mech5.itemGo).to.be.true;
-	})
+	});
 
 
 	it("sets the value of a valid item given everything is valid", function() {

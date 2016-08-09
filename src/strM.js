@@ -1,8 +1,8 @@
-function StrMF() {};
+function StrMF() {}
 
 function strM(d) {
 	var f = Object.create(StrMF.prototype);
-	f.v = (arguments.length == 0) ? "" : d;
+	f.v = (0 === arguments.length) ? "" : d;
 	if (f._v && f._v.isMech) {
 		f._v._parDir = f;
 	}

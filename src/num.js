@@ -1,11 +1,11 @@
 // A number primitive that can not contain a primitive
-function NumF() {};
+function NumF() {}
 
 function num(d) {
 	var f = Object.create(NumF.prototype);
-	f.v = (arguments.length == 0) ? 0 : d; // for same behavior as Number() == 0 and Number(undefined) == NaN
+	f.v = (0 === arguments.length) ? 0 : d; // for same behavior as Number() == 0 and Number(undefined) == NaN
 	return f;
-};
+}
 NumF.prototype = Object.create(Object.prototype, {
 	isMech: {
 		get: function() {

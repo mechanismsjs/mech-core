@@ -1,14 +1,14 @@
 // A number primitive that can contain a primitive.
-function NumMF() {};
+function NumMF() {}
 
 function numM(d) {
 	var f = Object.create(NumMF.prototype);
-	f.v = (arguments.length == 0) ? 0 : d;
+	f.v = (0 === arguments.length) ? 0 : d;
 	if (f._v && f._v.isMech) {
 		f._v._parDir = f;
 	}
 	return f;
-};
+}
 NumMF.prototype = Object.create(NumF.prototype, {
 	v: {
 		enumerable: false,

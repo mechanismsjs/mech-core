@@ -1,4 +1,4 @@
-function PropSetF() {};
+function PropSetF() {}
 
 function propSet(prop, dest, src, itemGo) {
 	var f = Object.create(PropSetF.prototype);
@@ -16,7 +16,7 @@ function propSet(prop, dest, src, itemGo) {
 	}
 	f.itemGo = itemGo;
 	return f;
-};
+}
 PropSetF.prototype = Object.create(Object.prototype, {
 	isMech: {
 		get: function() {

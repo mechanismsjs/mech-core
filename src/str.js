@@ -1,8 +1,8 @@
-function StrF() {};
+function StrF() {}
 
 function str(d) {
 	var f = Object.create(StrF.prototype);
-	f.v = (arguments.length == 0) ? "" : d;
+	f.v = (0 === arguments.length) ? "" : d;
 	return f;
 }
 StrF.prototype = Object.create(Object.prototype, {
@@ -38,10 +38,8 @@ StrF.prototype = Object.create(Object.prototype, {
 			switch (v) {
 				case "false":
 					return 0;
-					break;
 				case "true":
 					return 1;
-					break;
 				default:
 					return Number(v);
 			}

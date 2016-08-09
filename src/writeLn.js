@@ -1,4 +1,4 @@
-function WriteLnF() {};
+function WriteLnF() {}
 
 function writeLn(text) {
 	var f = Object.create(WriteLnF.prototype);

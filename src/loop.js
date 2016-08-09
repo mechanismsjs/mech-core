@@ -23,9 +23,9 @@ LoopF.prototype = Object.create(Object.prototype, {
 		get: function() {
 			var m = (undefined === this._m) ? undefined : (this._m.isMech ? this._m.go : this._m);
 
-			if (undefined != this._i) {
+			if ((undefined !== this._i) & (null !== this._i)) {
 				if (undefined === m) {
-					var last = undefined;
+					var last;
 					var cur = this._i.go;
 					while (undefined !== cur) {
 						last = cur;

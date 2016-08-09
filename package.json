@@ -1,7 +1,7 @@
 {
   "name": "mech-core",
   "namesub": "core",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Library of core mechanisms.",
   "main": "./dist/mech-core.js",
   "scripts": {
@@ -22,6 +22,7 @@
     "src/map.js",
     "src/filter.js",
     "src/writeLn.js",
+    "src/self.js",
     "src/util/footer.js"
   ],
   "repository": {

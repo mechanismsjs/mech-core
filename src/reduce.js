@@ -1,4 +1,4 @@
-function ReduceF() {};
+function ReduceF() {}
 
 function reduce(algo) {
 	var f = Object.create(ReduceF.prototype);
@@ -7,7 +7,7 @@ function reduce(algo) {
 		f._a._parDir = f;
 	}
 	return f;
-};
+}
 ReduceF.prototype = Object.create(Object.prototype, {
 	isMech: {
 		get: function() {

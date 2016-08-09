@@ -1,4 +1,4 @@
-function MapF() {};
+function MapF() {}
 
 function map(algo, max) {
 	var f = Object.create(MapF.prototype);
@@ -7,12 +7,12 @@ function map(algo, max) {
 		f._a._parDir = f;
 	}
 	f._cache = null;
-	f._max = ((null == max) || (undefined == max)) ? 1000 : max;
+	f._max = ((null === max) || (undefined === max)) ? 1000 : max;
 	if (f._max && f._max.isMech) {
 		f._max._parDir = f;
 	}
 	return f;
-};
+}
 MapF.prototype = Object.create(Object.prototype, {
 	isMech: {
 		get: function() {
