@@ -7,9 +7,14 @@ describe("self mechanism - self", function() {
 	});
 
 	it("should have correct properties", function() {
-    debugger;
 		var mech = m.self(this);
 		expect(mech.isMech).to.be.true;
+	});
+
+  it("should return 'this' of the function which created the mechansim (closure)", function() {
+		var mech = m.self(this);
+		expect(mech.go).to.equal(this);
+    expect(mech.self).to.equal(this);
 	});
 
 });
