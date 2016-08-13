@@ -26,10 +26,9 @@ A library of core mechanisms. See [Mechanisms Home][mech-home-link] for more inf
 * *[strM](#str-mechanism)* - a string primitive whose value can be a mechanism.
 * *[writeLn](#writeln-mechanism)* - writes text to the console.
 
+## <a name="filter-mechanism"></a> Filter
 
-## <a name="filter-mechanism"></a> Filter Mechanism
-
-The filter mechanism is similar to an [emitter][mech-emit-link] in that each invocation emits the next **filtered** value.
+```Filter``` is similar to an [emitter][mech-emit-link] in that each invocation emits the next **filtered** value.
 
 ```javascript
 var filter = m.filter(
@@ -38,7 +37,7 @@ var filter = m.filter(
   )
 );
 ```
-Invoking go on the filter causes the next **filtered** value to return:
+Invoking ```go``` on the ```filter``` causes the next **filtered** value to return:
 
 ```javascript
 filter.go; // returns 2
