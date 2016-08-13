@@ -9,7 +9,7 @@ var replace = require('gulp-replace');
 var rename = require('gulp-rename');
 var mocha = require('gulp-mocha');
 var mochaPhantom = require('gulp-mocha-phantomjs');
-var browserify = require('browserify');
+// var browserify = require('browserify');
 var transform = require('vinyl-transform');
 
 var source = pkg.source;
@@ -45,13 +45,13 @@ gulp.task('watch-mocha', function() {
 
 gulp.task('build', function() {
 	// Single entry point to browserify
-	var browserified = transform(function(filename) {
-		return browserify()
-			.require(libMain, {
-				expose: libName
-			})
-			.bundle();
-	});
+	// var browserified = transform(function(filename) {
+	// 	return browserify()
+	// 		.require(libMain, {
+	// 			expose: libName
+	// 		})
+	// 		.bundle();
+	// });
 
 	return gulp.src(source) // list of .js files we will concat
 		.pipe(concat(libFileName)) // concat into pkg.name + '.js'
@@ -64,8 +64,8 @@ gulp.task('build', function() {
 		.pipe(rename(libName + '.min.js')) // rename for minify
 		.pipe(uglify()) // minify it
 		.pipe(gulp.dest('dist')) // dump pkg.name + '.min.js'
-		.pipe(rename(libName + '.min.brow.js')) // rename before browserify
-		.pipe(browserified) // setup for browser support
+		// .pipe(rename(libName + '.min.brow.js')) // rename before browserify
+		// .pipe(browserified) // setup for browser support
 		.pipe(uglify()) // minify it
 		.pipe(gulp.dest('dist')) // dump pkg.name + '.min.js'
 		.on('error', gutil.log); // log any errors
