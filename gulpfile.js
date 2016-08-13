@@ -1,7 +1,6 @@
 var pkg = require('./package.json'); // Changed this? Need to re-run gulp to reload the
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var coffee = require('gulp-coffee');
 var header = require('gulp-header');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -9,7 +8,6 @@ var replace = require('gulp-replace');
 var rename = require('gulp-rename');
 var mocha = require('gulp-mocha');
 var mochaPhantom = require('gulp-mocha-phantomjs');
-var transform = require('vinyl-transform');
 
 var source = pkg.source;
 var libName = pkg.name;
