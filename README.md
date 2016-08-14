@@ -1,11 +1,3 @@
-[mech-library-link]: https://github.com/mechanismsjs/mech-library "Clone to easily create new mechanism libraries"
-[mech-web-link]: https://github.com/mechanismsjs/mech-web "Web centric DOM mechanisms"
-[mech-core-link]: https://github.com/mechanismsjs/mech-core "Core mechanisms"
-[mech-math-link]: https://github.com/mechanismsjs/mech-math "Math mechanisms"
-[mech-guid-link]: https://github.com/mechanismsjs/mech-guid "Mechanisms for guids"
-[mech-home-link]: https://github.com/mechanisms/mech "Home repository for mechanisms"
-[mech-emit-link]: https://github.com/mechanismsjs/mech-emit "Mechanisms for emitting data"
-
 # mech-core
 
 A library of core mechanisms. See [Mechanisms Home][mech-home-link] for more information and other libraries.
@@ -487,7 +479,9 @@ m.writeLn(
 
 Change directory to your node project.
 
-    $ npm install mech-core --save
+```
+$ npm install mech-core --save
+```
 
 ## Development
 
@@ -497,16 +491,28 @@ There are **a lot** of core mechanisms to add. Many of them can be created in a 
 
 ### Setup
 
-### Setup
-
 Install:
 
-    $ npm install
+```
+$ npm install
+```
 
 Continuous test:
 
-    $ gulp
+```
+$ gulp
+```
 
 Test:
 
-    $ gulp webtests
+```
+$ gulp webtests
+```
+
+[mech-library-link]: https://github.com/mechanismsjs/mech-library "Clone to easily create new mechanism libraries"
+[mech-web-link]: https://github.com/mechanismsjs/mech-web "Web centric DOM mechanisms"
+[mech-core-link]: https://github.com/mechanismsjs/mech-core "Core mechanisms"
+[mech-math-link]: https://github.com/mechanismsjs/mech-math "Math mechanisms"
+[mech-guid-link]: https://github.com/mechanismsjs/mech-guid "Mechanisms for guids"
+[mech-home-link]: https://github.com/mechanisms/mech "Home repository for mechanisms"
+[mech-emit-link]: https://github.com/mechanismsjs/mech-emit "Mechanisms for emitting data"
